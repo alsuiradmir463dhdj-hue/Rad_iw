@@ -1,7 +1,7 @@
 import logging
 import sqlite3
 from datetime import datetime
-from aiogram import Bot, Dispatcher, types
+from aiogram import Bot, Dispatcher, types, F  # ← ДОБАВЛЕН F
 from aiogram.filters import Command
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo
 from aiogram.fsm.context import FSMContext
@@ -93,12 +93,9 @@ async def handle_webapp_data(message: types.Message):
     except Exception as e:
         logging.error(f"Ошибка обработки WebApp данных: {e}")
 
-@dp.message()
-async def handle_receipt(message: types.Message):
+@dp.message(F.photo)
+async def handle_receipt(message: types.Message, state: FSMContext):
     """Получение фото чека"""
-    if not message.photo:
-        return
-    
     photo = message.photo[-1]
     
     # Сохраняем в БД
