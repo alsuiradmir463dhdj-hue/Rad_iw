@@ -1,0 +1,10 @@
+# 🤖 НАСТРОЙКИ БОТА
+
+# Токен от @BotFather
+BOT_TOKEN: ""
+
+# ID админов от @userinfobot
+ADMIN_IDS: ""
+
+# Номер карты или ЮMoney кошелек
+YOOMONEY_WALLET: ""
