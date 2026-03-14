@@ -9,32 +9,23 @@ from aiogram.fsm.state import State, StatesGroup
 from aiogram.fsm.storage.memory import MemoryStorage
 import asyncio
 import os
-import yaml
-from dotenv import load_dotenv
-
-# Загружаем секреты
-load_dotenv()
-
-# Загружаем YAML
-with open('bot.yml', 'r', encoding='utf-8') as f:
-    config = yaml.safe_load(f)
 
 # Настройка логирования
 logging.basicConfig(level=logging.INFO)
 
-# Берем данные из YAML
-BOT_TOKEN = config.get('BOT_TOKEN')
-ADMIN_IDS = [int(id.strip()) for id in config.get('ADMIN_IDS', '').split(',') if id.strip()]
-YOOMONEY_WALLET = config.get('YOOMONEY_WALLET')
+# Берем данные из переменных окружения (GitHub Secrets)
+BOT_TOKEN = os.getenv('BOT_TOKEN')
+ADMIN_IDS = [int(id.strip()) for id in os.getenv('ADMIN_IDS', '').split(',') if id.strip()]
+YOOMONEY_WALLET = os.getenv('YOOMONEY_WALLET')
 PAYMENT_AMOUNT = 1000
 
 # Проверка
 if not BOT_TOKEN:
-    raise ValueError("❌ Нет BOT_TOKEN в bot.yml")
+    raise ValueError("❌ Нет BOT_TOKEN в секретах GitHub!")
 if not ADMIN_IDS:
-    raise ValueError("❌ Нет ADMIN_IDS в bot.yml")
+    raise ValueError("❌ Нет ADMIN_IDS в секретах GitHub!")
 if not YOOMONEY_WALLET:
-    raise ValueError("❌ Нет YOOMONEY_WALLET в bot.yml")
+    raise ValueError("❌ Нет YOOMONEY_WALLET в секретах GitHub!")
 
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher(storage=MemoryStorage())
